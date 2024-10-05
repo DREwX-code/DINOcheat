@@ -8,7 +8,7 @@ To install the Dino Cheat script from GreasyFork, follow these steps:
 1. **Access GreasyFork**: Click [here](https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel?locale_override=1) to open the script page.
 
 2. **Install Tampermonkey**:
-   - If you haven't installed Tampermonkey yet, go to the [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmipfmgmhnnpjjjmlhjdme) and click "Add to Chrome" to install it.
+   - If you haven't installed Tampermonkey yet, go to the [Chrome Web Store](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) and click "Add to Chrome" to install it.
 
 3. **Install the Script**:
    - Once Tampermonkey is installed, return to the GreasyFork script page.

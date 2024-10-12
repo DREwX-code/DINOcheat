@@ -32,4 +32,4 @@ You can install the script at [https://greasyfork.org/en/scripts/486972-dinochea
 
 Don't hesitate to leave a comment, or make suggestions for improvement via:  
 📧 **dr3wx.andrew@gmail.com**  
-or on [GreasyFork](https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel).
+or on [GreasyFork](https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/feedback).

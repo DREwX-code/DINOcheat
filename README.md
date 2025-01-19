@@ -26,7 +26,7 @@ With a choice of theme for the dino (change the environment and the dino):
 - Godzilla
 - Classic
 
-**DINOcheat** was created on February 9, 2024.
+**DINOcheat** was created on February 9, 2024.  
 This script is subject to conditions of use.
 
 You can install the script at [https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel](https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel)

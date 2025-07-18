@@ -1,4 +1,4 @@
-<h1>Conditions d'utilisation<h1>
+<h1>Conditions d'utilisation</h1>
 <h3><b>1. Introduction</b></h3>Bienvenue sur DINOcheat, un script conçu pour personnaliser l'expérience du jeu
 du dinosaure Google & Chrome. Bien que le nom du script contienne des termes tels que <i>"hack"</i> et
 <i>"cheat"</i>, il est important de préciser que DINOcheat ne représente pas un véritable <b>"hack"</b> ou
@@ -6,16 +6,19 @@ du dinosaure Google & Chrome. Bien que le nom du script contienne des termes tel
 d'ajuster certains paramètres du jeu (tels que la vitesse, le saut, ou le score). Ces fonctionnalités sont destinées à
 améliorer l'expérience du joueur et ne sont pas illégales. DINOcheat est conçu pour être utilisé dans un cadre privé et
 ne doit pas être utilisé sur des sites ou des plateformes qui ne sont pas d'accord avec de telles modifications.<br><br>
-<h3><b>2. Collecte de données</b></h3>Nous ne collectons aucune donnée personnelle identifiable. Cependant,
-nous stockons des informations de manière anonyme pour améliorer votre expérience avec notre script :<br>•
-<b>Langue</b> : La seule donnée stockée est la langue de l'utilisateur, qui est conservée dans le stockage
-local de votre navigateur pour personnaliser votre expérience.<br>• Aucune donnée personnelle telle que votre nom,
-adresse email, ou toute autre information identifiable n'est collectée ou stockée.<br><br>
-<h3><b>3. Utilisation des données</b></h3>Les seules informations stockées sont relatives à la langue de
-l'utilisateur. Ces données sont utilisées exclusivement pour :<br>• Définir la langue préférée afin de personnaliser
-l'interface du script.<br>• Améliorer l'expérience utilisateur en vous permettant d'utiliser DINOcheat dans la langue de
-votre choix.<br><br><b>
-  <h3>4. Contenu tiers
+<h3><b>2. Collecte de données</b></h3>
+Aucune donnée personnelle identifiable n’est recueillie. Seules vos préférences sont enregistrées localement par Tampermonkey :<br>
+• <b>Langue</b> : la langue sélectionnée est stockée via <code>GM_setValue</code>.<br>
+• <b>Paramètres de jeu</b> : vos réglages (vitesse, thème, options d’interface, etc.) peuvent être stockés via <code>GM_setValue</code> et appliqués automatiquement à chaque utilisation.<br>
+Ces données restent strictement locales dans l’espace de stockage interne de Tampermonkey ; nous ne les utilisons jamais en dehors du script et ne les transmettons à aucun serveur.<br><br>
+
+<h3><b>3. Utilisation des données</b></h3>
+Les informations stockées sont utilisées uniquement pour :<br>
+• Adapter l’interface à la langue choisie.<br>
+• Appliquer vos paramètres de jeu personnalisés.<br>
+• Optimiser votre expérience utilisateur avec DINOcheat.<br><br>
+
+  <h3><b>4. Contenu tiers
 </b></h3>Notre script utilise des images et des thèmes provenant de sources externes. Ces ressources sont liées à des
 sites tiers et peuvent être soumises à des politiques de confidentialité distinctes. Voici les thèmes disponibles et
 leurs liens correspondants :<br><br>• <b>Classic</b> :<br> ◦ Image 1x : <a
@@ -81,16 +84,15 @@ en dehors de ces sites est déconseillée et à vos risques et périls.<br><br>
 <div>
   <h3><b>5. Sécurité des données</b></h3>Nous n'entrons en possession d'aucune donnée personnelle, donc la
   question de la protection des informations sensibles ne se pose pas. Cependant, nous vous encourageons à prendre des
-  précautions lorsque vous utilisez des services externes.<br><br>
+  précautions lorsque vous utilisez des services externes. Assurez-vous de consulter leurs conditions d’utilisation et leurs politiques de confidentialité.<br><br>
   <h3><b>6. Modifications de la politique de confidentialité</b></h3>Nous nous réservons le droit de mettre à
-  jour ou de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page,
+  jour ou de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur <a href="https://github.com/DREwX-code/DINOcheat/blob/main/Terms-of-use_FR.md" target="_blank">cette page</a>,
   et la date de la dernière mise à jour sera indiquée en bas de la section. Nous vous conseillons de consulter
   régulièrement cette page pour être informé des changements.
 </div><br>
 <div>
-  <h3><b>7. Droits des utilisateurs</b></h3>Puisque nous ne collectons pas de données personnelles, vous
-  n'avez pas besoin d'exercer de droit d'accès, de rectification ou de suppression. Le seul élément stocké est la
-  langue, et vous pouvez la modifier à tout moment via les paramètres de votre navigateur.<br><br>
+  <h3><b>7. Droits des utilisateurs</b></h3>Puisque nous ne collectons pas de données personnelles, vos droits d’accès, de rectification et de suppression ne s’appliquent pas. Seules vos préférences (langue et paramètres de jeu) sont stockées via Tampermonkey.
+   Vous pouvez les modifier ou réinitialiser à tout moment depuis le panneau de configuration du script de l’extension de gestionnaire de scripts Tampermonkey.<br><br>
   <h3><b>8. Contact</b></h3>Si vous avez des questions ou préoccupations concernant cette politique de
   confidentialité, n'hésitez pas à nous contacter à l'adresse suivante<ul>
     <li>Email : dr3wx.andrew@gmail.com</li>
@@ -200,6 +202,7 @@ frauduleuse ou illégale de DINOcheat peut entraîner des conséquences, et nous
 d'usage non autorisé.<br>Nous encourageons tous les utilisateurs à respecter les conditions d'utilisation des sites
 tiers et à s'assurer que leurs actions ne violent aucune règle, que ce soit sur le plan éthique ou légal. Le plaisir de
 personnaliser votre expérience de jeu ne doit pas se faire au détriment des autres ou des plateformes sur lesquelles
-vous jouez.<br>Nous vous remercions de votre compréhension et de votre coopération pour garantir une utilisation sûre et
-respectueuse de ce script.<br><br><b>Dernière mise à jour</b> : Lundi 24 février 2025<br><b>Version
+vous jouez.<br>Les présentes Conditions d’utilisation sont rédigées en langue française. En cas de divergence d’interprétation entre la version française et toute traduction, la version française prévaudra.
+<br>Nous vous remercions de votre compréhension et de votre coopération pour garantir une utilisation sûre et
+respectueuse de ce script.<br><br><b>Dernière mise à jour</b> : Vendredi 18 juillet 2025<br><b>Version
   originale</b> : Française

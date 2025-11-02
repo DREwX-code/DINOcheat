@@ -18,6 +18,7 @@ With a choice of theme for the dino (change the environment and the dino):
 - Trump
 - Joker
 - Batman
+- Ninja
 - Night
 - Squid Game
 - Santa

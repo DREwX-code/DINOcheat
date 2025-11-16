@@ -3,41 +3,44 @@
 //For more information, please contact me on github.
 //Previous versions are available on Greasyfork.
 
+/*
 Copyright 2025 Dℝ∃wX
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+    https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+*/
+
 
 
 
 
 // ==UserScript==
-// @name            DINOcheat: hack/cheat dino google & chrome (bot,speed,score,imortality...)
-// @name:fr         DINOcheat: hack/cheat dino google & chrome (bot,rapide,score,imortel...)
-// @name:es         DINOcheat: hack/cheat dino google & chrome (bot, velocidad, puntaje, inmortalidad...)
-// @name:ja         DINOcheat: hack/cheat dino google & chrome (ボット、速度、スコア、不死身...）
-// @name:it         DINOcheat: hack/cheat dino google & chrome (bot, velocità, punteggio, immortalità...)
-// @name:de         DINOcheat: Hack/Cheat für Dino Google & Chrome (Bot, schnell, Punktestand, unsterblich...)
-// @name:zh-CN      DINOcheat：Dino Google & Chrome 作弊工具（机器人、快速、高分、不死等）
+// @name            DINOcheat : hack/cheat dino google & chrome
+// @name:fr         DINOcheat : hack/cheat dino google & chrome
+// @name:es         DINOcheat : hack/cheat dino google & chrome
+// @name:ja         DINOcheat : hack/cheat dino google & chrome
+// @name:it         DINOcheat : hack/cheat dino google & chrome
+// @name:de         DINOcheat : Hack/Cheat für Dino Google & Chrome
+// @name:zh-CN      DINOcheat ：Hack/Cheat Dino Google & Chrome
 // @namespace       http://tampermonkey.net/
-// @version         10-30-2025__1.8.3
-// @icon            https://github.com/DREwX-code/DINOcheat/blob/main/D%E2%84%9D%E2%88%83wX_image/D%E2%84%9D%E2%88%83wX_img.png?raw=true
-// @description     Use great features to have a dino without limits!
-// @description:fr  Utilisez les super fonctions pour avoir un dino sans limites !
-// @description:es  ¡Utiliza grandes características para tener un dino sin límites!
-// @description:ja  特別な機能を駆使して、制限のないディノを手に入れよう！
-// @description:it  Usa funzionalità fantastiche per avere un dino senza limiti!
-// @description:de  Verwende die Superfunktionen, um einen Dino ohne Grenzen zu haben!
-// @description:zh-CN  启用强大功能，释放恐龙的无限潜力！
+// @version         16-11-2025__1.8.5
+// @icon            https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/D%E2%84%9D%E2%88%83wX_image/D%E2%84%9D%E2%88%83wX_logo.png
+// @description     Use the super features to make your Dino limitless: auto bot ｜ speed ｜ score ｜ immortal ｜ fly ｜ invisibility ｜ pause
+// @description:fr  Utilisez les super fonctionnalités pour avoir un dino sans limites : bot automatique ｜ vitesse ｜ score ｜ immortel ｜ voler ｜ invisibilité ｜ pause
+// @description:es  Usa las super funciones para tener un Dino sin límites: bot automático ｜ velocidad ｜ puntuación ｜ inmortal ｜ volar ｜ invisibilidad ｜ pausa
+// @description:ja  スーパー機能を使って制限のないDinoを手に入れよう： 自動ボット ｜ 速度 ｜ スコア ｜ 不死 ｜ 飛行 ｜ 透明化 ｜ 一時停止
+// @description:it  Usa le super funzionalità per avere un Dino senza limiti: bot automatico ｜ velocità ｜ punteggio ｜ immortale ｜ volare ｜ invisibilità ｜ pausa
+// @description:de  Nutze die Superfunktionen, um deinen Dino grenzenlos zu machen: automatischer Bot ｜ Geschwindigkeit ｜ Punktzahl ｜ unsterblich ｜ fliegen ｜ Unsichtbarkeit ｜ Pause
+// @description:zh-CN  使用超级功能让你的恐龙无限制： 自动机器人 ｜ 速度 ｜ 分数 ｜ 不朽 ｜ 飞行 ｜ 隐身 ｜ 暂停
 // @match        *://chromedino.com/*
 // @match        *://tuckercraig.com/dino/*
 // @match        *://trex-runner.com/*
@@ -47,11 +50,12 @@ limitations under the License.
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getValue
 // @grant        GM_setValue
+// @connect      greasyfork.org
 // @author       Dℝ∃wX
 // @copyright    2025 DℝᴇwX
 // @license      Apache-2.0
 // @run-at       document-idle
-// @require https://update.greasyfork.org/scripts/554218/1686494/DINOcheat%20Translation%20Library.js
+// @require      https://update.greasyfork.org/scripts/554218/1696543/DINOcheat%20Translation%20Library.js
 // @tag          games
 // @tag          bot
 // @tag          custom
@@ -59,7 +63,8 @@ limitations under the License.
 // @tag          immortal
 // @tag          dino
 // @tag          play
-// @downloadURL none
+// @downloadURL  https://update.greasyfork.org/scripts/486972/DINOcheat%20%3A%20hackcheat%20dino%20google%20%20chrome.user.js
+// @updateURL    https://update.greasyfork.org/scripts/486972/DINOcheat%20%3A%20hackcheat%20dino%20google%20%20chrome.meta.js
 // ==/UserScript==
 
 
@@ -98,11 +103,202 @@ The French Terms of Use linked above is the definitive policy; in case of any di
     if (currentURL.includes(".png")) {
     } else {
 
-        // Ensure translation library reads the chosen language
         try {
             const initialLang = (await GM_getValue('selectedLang')) || (navigator.language ? navigator.language.slice(0, 2) : 'en') || 'en';
             localStorage.setItem('DINO_LANG', initialLang);
-        } catch (e) { /* no-op */ }
+        } catch (e) { }
+
+        const GREASYFORK_PAGE_URL = 'https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome';
+
+        function getLocalVersion() {
+            try {
+                if (typeof GM_info !== 'undefined' && GM_info && GM_info.script && GM_info.script.version) {
+                    return GM_info.script.version;
+                }
+            } catch (_) { }
+            return '2-11-2025__1.8.5';
+        }
+
+        function httpGetCrossOrigin(url) {
+            return new Promise((resolve, reject) => {
+                if (typeof GM_xmlhttpRequest === 'function') {
+                    try {
+                        GM_xmlhttpRequest({
+                            method: 'GET',
+                            url,
+                            onload: (res) => resolve(res.responseText),
+                            onerror: (err) => reject(err)
+                        });
+                    } catch (err) {
+                        reject(err);
+                    }
+                } else {
+                    fetch(url).then(r => r.text()).then(resolve).catch(reject);
+                }
+            });
+        }
+
+        function parseLatestVersionAndInstall(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const versionSpan = doc.querySelector('dd.script-show-version > span');
+            const latestVersion = versionSpan ? (versionSpan.textContent || '').trim() : null;
+            const installAnchor = doc.querySelector('a.install-link, a[href$=".user.js"]');
+            const installHref = installAnchor ? installAnchor.href : GREASYFORK_PAGE_URL;
+            return { latestVersion, installHref };
+        }
+
+        function getLangSync() {
+            try { const v = localStorage.getItem('DINO_LANG'); if (v) return v; } catch (_) { }
+            return (navigator.language ? navigator.language.slice(0, 2) : 'en') || 'en';
+        }
+
+        function showUpdatePopup(latestVersion, installHref) {
+            const langRaw = getLangSync();
+            const lang = langRaw === 'zh' ? 'zh-CN' : langRaw;
+            const M = {
+                fr: {
+                    title: 'Mise à jour disponible',
+                    desc: `Une nouvelle version de DINOcheat est disponible.\nInstallée: ${getLocalVersion()} • Dernière: ${latestVersion}\nVotre script est obsolète.`,
+                    install: 'Installer la nouvelle version',
+                    later: 'Plus tard'
+                },
+                en: {
+                    title: 'Update available',
+                    desc: `A new version of DINOcheat is available.\nInstalled: ${getLocalVersion()} • Latest: ${latestVersion}\nYour script is outdated.`,
+                    install: 'Install new version',
+                    later: 'Later'
+                },
+                es: {
+                    title: 'Actualización disponible',
+                    desc: `Hay una nueva versión de DINOcheat disponible.\nInstalada: ${getLocalVersion()} • Última: ${latestVersion}\nTu script está obsoleto.`,
+                    install: 'Instalar nueva versión',
+                    later: 'Más tarde'
+                },
+                it: {
+                    title: 'Aggiornamento disponibile',
+                    desc: `È disponibile una nuova versione di DINOcheat.\nInstallata: ${getLocalVersion()} • Ultima: ${latestVersion}\nIl tuo script è obsoleto.`,
+                    install: 'Installa la nuova versione',
+                    later: 'Più tardi'
+                },
+                de: {
+                    title: 'Update verfügbar',
+                    desc: `Eine neue Version von DINOcheat ist verfügbar.\nInstalliert: ${getLocalVersion()} • Neueste: ${latestVersion}\nIhr Skript ist veraltet.`,
+                    install: 'Neue Version installieren',
+                    later: 'Später'
+                },
+                ja: {
+                    title: 'アップデートがあります',
+                    desc: `DINOcheat の新しいバージョンがあります。\nインストール済み: ${getLocalVersion()} • 最新: ${latestVersion}\nお使いのスクリプトは古くなっています。`,
+                    install: '新しいバージョンをインストール',
+                    later: '後で'
+                },
+                'zh-CN': {
+                    title: '有可用更新',
+                    desc: `DINOcheat 有新版本可用。\n已安装: ${getLocalVersion()} • 最新: ${latestVersion}\n您的脚本已过期。`,
+                    install: '安装新版本',
+                    later: '稍后'
+                }
+            }[lang] || {
+                title: 'Update available',
+                desc: `A new version of DINOcheat is available.\nInstalled: ${getLocalVersion()} • Latest: ${latestVersion}\nYour script is outdated.`,
+                install: 'Install new version',
+                later: 'Later'
+            };
+
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.inset = '0';
+            overlay.style.background = 'rgba(0,0,0,0.55)';
+            overlay.style.backdropFilter = 'blur(2px)';
+            overlay.style.zIndex = '2147483000';
+
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.left = '50%';
+            modal.style.top = '18%';
+            modal.style.transform = 'translate(-50%, 0)';
+            modal.style.width = 'min(92vw, 560px)';
+            modal.style.background = 'linear-gradient(180deg, #ffffff 0%, #f7f9ff 100%)';
+            modal.style.border = '1px solid #e5e7eb';
+            modal.style.borderRadius = '14px';
+            modal.style.boxShadow = '0 20px 60px rgba(0,0,0,0.25), 0 2px 10px rgba(0,0,0,0.15)';
+            modal.style.padding = '22px 20px 16px';
+            modal.style.zIndex = '2147483647';
+
+            const title = document.createElement('div');
+            title.textContent = M.title;
+            title.style.fontSize = '20px';
+            title.style.fontWeight = '700';
+            title.style.color = '#111827';
+            title.style.margin = '2px 6px 8px';
+
+            const text = document.createElement('div');
+            text.textContent = M.desc;
+            text.style.whiteSpace = 'pre-line';
+            text.style.fontSize = '15px';
+            text.style.lineHeight = '1.5';
+            text.style.color = '#1f2937';
+            text.style.margin = '0 6px 16px';
+
+            const actions = document.createElement('div');
+            actions.style.display = 'flex';
+            actions.style.gap = '10px';
+            actions.style.justifyContent = 'flex-end';
+            actions.style.marginTop = '8px';
+
+            const laterBtn = document.createElement('button');
+            laterBtn.textContent = M.later;
+            laterBtn.style.padding = '10px 14px';
+            laterBtn.style.borderRadius = '10px';
+            laterBtn.style.border = '1px solid #e5e7eb';
+            laterBtn.style.background = '#fff';
+            laterBtn.style.color = '#111827';
+            laterBtn.style.cursor = 'pointer';
+
+            const installBtn = document.createElement('a');
+            installBtn.textContent = M.install;
+            installBtn.href = installHref || GREASYFORK_PAGE_URL;
+            installBtn.target = '_blank';
+            installBtn.rel = 'noopener';
+            installBtn.style.textDecoration = 'none';
+            installBtn.style.padding = '10px 14px';
+            installBtn.style.borderRadius = '10px';
+            installBtn.style.background = '#1b4ed1';
+            installBtn.style.color = '#fff';
+            installBtn.style.border = '1px solid #1b4ed1';
+            installBtn.style.cursor = 'pointer';
+
+            actions.appendChild(laterBtn);
+            actions.appendChild(installBtn);
+
+            laterBtn.addEventListener('click', () => {
+                try { document.body.removeChild(overlay); } catch (_) { }
+                try { document.body.removeChild(modal); } catch (_) { }
+            });
+
+            document.body.appendChild(overlay);
+            modal.appendChild(title);
+            modal.appendChild(text);
+            modal.appendChild(actions);
+            document.body.appendChild(modal);
+        }
+
+        async function checkForUpdate() {
+            try {
+                const html = await httpGetCrossOrigin(GREASYFORK_PAGE_URL);
+                const { latestVersion, installHref } = parseLatestVersionAndInstall(html);
+                if (latestVersion) {
+                    const local = (getLocalVersion() || '').trim();
+                    if (local && local !== latestVersion) {
+                        showUpdatePopup(latestVersion, installHref);
+                    }
+                }
+            } catch (_) {
+            }
+        }
+
+        checkForUpdate();
 
 
         const DEFAULT_THEME_ORDER = [
@@ -158,7 +354,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 var newLink = document.createElement('a');
                 newLink.href = "#";
                 newLink.innerHTML = `
-                <img src="https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/Dℝ∃wX_image/Dℝ∃wX_img.png" width="40">
+                <img src="https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/D%E2%84%9D%E2%88%83wX_image/D%E2%84%9D%E2%88%83wX_logo.png" width="40">
                 <span>${DINO_TRANSLATE('menu')}</span>
                 `;
 
@@ -200,7 +396,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 var menuLink = document.createElement('a');
                 menuLink.href = "#";
                 menuLink.innerHTML = `
-                    <img src="https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/Dℝ∃wX_image/Dℝ∃wX_img.png">
+                    <img src="https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/D%E2%84%9D%E2%88%83wX_image/D%E2%84%9D%E2%88%83wX_logo.png>
                     <span>${DINO_TRANSLATE('menu')}</span>
                 `;
 
@@ -403,7 +599,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
             const savedFlag = LANG_TO_FLAG[savedLang] || LANG_TO_FLAG.en;
             await GM_setValue('selectedFlag', savedFlag);
-            try { localStorage.setItem('DINO_LANG', savedLang); } catch (e) {}
+            try { localStorage.setItem('DINO_LANG', savedLang); } catch (e) { }
 
             const flagSelect = document.getElementById('flag-select');
             flagSelect.src = savedFlag;
@@ -455,7 +651,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
                     await GM_setValue('selectedLang', selectedLang);
                     await GM_setValue('selectedFlag', selectedFlag);
-                    try { localStorage.setItem('DINO_LANG', selectedLang); } catch (e) {}
+                    try { localStorage.setItem('DINO_LANG', selectedLang); } catch (e) { }
 
                     switch (selectedLang) {
                         case 'fr':
@@ -549,6 +745,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 
         let isShortcutEnabled = false;
+        let isToolbarVisible = true;
 
         let menuPopup = null;
         let menuShadow = null;
@@ -895,6 +1092,66 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             color: #333;
         }
 
+        .checkbox-wrap-green input {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1.2px solid;
+            border-radius: 4px;
+            border-color: #555;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .checkbox-wrap-green input:checked {
+            background: #4CAF50;
+            border-color: #555;
+        }
+
+        .checkbox-wrap-green input:checked::after {
+            content: "✔";
+            font-size: 14px;
+            color: #ffffff;
+            position: absolute;
+            left: 2px;
+        }
+
+        .checkbox-wrap-blue input {
+            appearance: none;
+            top: 5px;
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 1.2px solid #555;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .checkbox-wrap-blue input:checked {
+            background: #2196F3;
+            border-color: #2196F3;
+        }
+
+        .checkbox-wrap-blue input:checked::after {
+            content: "✔";
+            font-size: 10px;
+            color: #ffffff;
+            position: absolute;
+            left: 1.5px;
+        }
+
+
+        .checkbox-wrap-blue input:focus {
+            outline: none !important;
+        }
+
         .switch-label {
             margin-right: 8px;
             color: #808080;
@@ -992,51 +1249,49 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             color: blue;
         }
 
-.rating-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 18px;
-  gap: 6px;
-}
+        .rating-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 18px;
+        gap: 6px;
+        }
 
-.rating-stars {
-  display: flex;
-  align-items: center;
-  color: #f5c518; /* doré sobre */
-}
+        .rating-stars {
+        display: flex;
+        align-items: center;
+        color: #f5c518;
+        }
 
-.star {
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  transition: transform 0.25s ease, color 0.3s ease;
-  cursor: pointer;
-}
+        .star {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        transition: transform 0.25s ease, color 0.3s ease;
+        cursor: pointer;
+        }
 
-.star svg {
-  width: 100%;
-  height: 100%;
-  fill: currentColor;
-}
+        .star svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+        }
 
-/* ⭐ Animation subtile au survol */
-.star:hover {
-  transform: scale(1.2);
-  color: #ffd700; /* doré clair */
-  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
-}
+        .star:hover {
+        transform: scale(1.2);
+        color: #ffd700;
+        filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+        }
 
-/* 💫 Légère pulsation continue pour effet vivant */
-@keyframes starPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
+        @keyframes starPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        }
 
-.rating-stars .star {
-  animation: starPulse 3s ease-in-out infinite;
-  animation-delay: calc(var(--i, 0) * 0.2s);
-}
+        .rating-stars .star {
+        animation: starPulse 3s ease-in-out infinite;
+        animation-delay: calc(var(--i, 0) * 0.2s);
+        }
 
         `;
 
@@ -1274,7 +1529,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             infoPanel.appendChild(newsTitle);
 
             const newsImg = document.createElement('img');
-            newsImg.src = 'https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/Dℝ∃wX_image/Version_1-8-0.png';
+            newsImg.src = 'https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/D%E2%84%9D%E2%88%83wX_image/DINOcheat%20TOOLBAR.png';
             newsImg.alt = 'Nouvelle fonctionnalité';
             newsImg.style.width = '100%';
             newsImg.style.borderRadius = '6px';
@@ -1299,24 +1554,23 @@ The French Terms of Use linked above is the definitive policy; in case of any di
         }
 
 
-        const greasyForkUrl = 'https://greasyfork.org/fr/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel';
+        const greasyForkUrl = GREASYFORK_PAGE_URL;
 
         function fetchInstallCount(infoPanel) {
             fetch(greasyForkUrl)
                 .then(response => response.text())
                 .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const installElement = doc.querySelector('dd.script-show-total-installs > span');
-                const installCount = installElement ? installElement.textContent.trim() : "Inconnu";
-                const versionElement = doc.querySelector('dd.script-show-version > span');
-                const scriptVersion = versionElement ? versionElement.textContent.trim() : "Inconnu";
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const installElement = doc.querySelector('dd.script-show-total-installs > span');
+                    const installCount = installElement ? installElement.textContent.trim() : "Inconnu";
+                    const versionElement = doc.querySelector('dd.script-show-version > span');
 
-                displayInstallCountAndVersion(installCount, scriptVersion, infoPanel);
-            });
+                    displayInstallCountAndVersion(installCount, infoPanel);
+                });
         }
 
-        function displayInstallCountAndVersion(installCount, scriptVersion, infoPanel) {
+        function displayInstallCountAndVersion(installCount, infoPanel) {
             const container = document.createElement('div');
             container.style.marginTop = '12px';
             container.style.padding = '10px 14px';
@@ -1327,7 +1581,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             container.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.05)';
 
             const versionElement = document.createElement('p');
-            versionElement.textContent = `${DINO_TRANSLATE('versionLabel')} : ${scriptVersion}`;
+            versionElement.textContent = `${DINO_TRANSLATE('versionLabel')} : ${getLocalVersion()}`;
             versionElement.style.fontSize = '15px';
             versionElement.style.fontWeight = '500';
             versionElement.style.color = '#1b4ed1';
@@ -1429,6 +1683,26 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             clickableText.style.cursor = 'pointer';
             text.appendChild(clickableText);
 
+            function applyTermsStyles() {
+                if (window.location.href.includes('chromedino.com') || window.location.href.includes('tuckercraig.com/dino')) {
+                    title.style.fontSize = '2rem';
+                    title.style.fontWeight = 'bold';
+
+                    const h5Elements = text.querySelectorAll('h5');
+                    h5Elements.forEach(h5 => {
+                        h5.style.fontSize = '1.2rem';
+                        h5.style.fontWeight = 'bold';
+                    });
+
+                    const links = text.querySelectorAll('a');
+                    links.forEach(link => {
+                        link.style.textDecoration = 'none';
+                        link.onmouseover = () => link.style.textDecoration = 'underline';
+                        link.onmouseout = () => link.style.textDecoration = 'none';
+                        link.style.color = '#007bff';
+                    });
+                }
+            }
 
             function getLanguageValue() {
                 let languageValue;
@@ -1463,7 +1737,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             clickableText.addEventListener('click', async function () {
                 currentLang = currentLang === 'fr' ? 'en' : 'fr';
                 await GM_setValue('selectedLang', currentLang);
-                try { localStorage.setItem('DINO_LANG', currentLang); } catch (e) {}
+                try { localStorage.setItem('DINO_LANG', currentLang); } catch (e) { }
                 title.innerHTML = DINO_TRANSLATE('TileTermsLabel');
                 content.appendChild(title);
                 text.innerHTML = `${DINO_TRANSLATE('TermsLabel')}`;
@@ -1473,6 +1747,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 if (currentLang === 'fr') {
                     clickableText.remove();
                 }
+                applyTermsStyles();
                 TermsPanel.scrollTo({
                     top: 0,
                     behavior: 'smooth'
@@ -1481,26 +1756,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 
 
-            if (window.location.href.includes('chromedino.com') || window.location.href.includes('tuckercraig.com/dino')) {
-                title.style.fontSize = '2rem';
-                title.style.fontWeight = 'bold';
-
-
-                const h5Elements = text.querySelectorAll('h5');
-                h5Elements.forEach(h5 => {
-                    h5.style.fontSize = '1.2rem';
-                    h5.style.fontWeight = 'bold';
-                });
-
-
-                const links = text.querySelectorAll('a');
-                links.forEach(link => {
-                    link.style.textDecoration = 'none';
-                    link.onmouseover = () => link.style.textDecoration = 'underline';
-                    link.onmouseout = () => link.style.textDecoration = 'none';
-                    link.style.color = '#007bff';
-                });
-            }
+            applyTermsStyles();
 
 
             const closeButton = document.createElement('button');
@@ -1552,7 +1808,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     currentLang = 'en'
                     await GM_setValue('selectedLang', currentLang);
                 }
-                try { localStorage.setItem('DINO_LANG', currentLang); } catch (e) {}
+                try { localStorage.setItem('DINO_LANG', currentLang); } catch (e) { }
 
                 toggleMenuPopup();
                 TermsPanel.remove()
@@ -1697,15 +1953,12 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     </div>${DINO_TRANSLATE('menu')}
                 </div>
                 <div class="content">
-                    <span>${DINO_TRANSLATE('jumpHeight')} <input type="number" id="jumpHeightInput" class="input-small-discreet"
-                            placeholder="10"></span>
-                    <span>${DINO_TRANSLATE('speedText')} <input type="number" id="speedInput" class="input-small-discreet"
-                            placeholder="7"></span>
-                    <span>${DINO_TRANSLATE('scoreText')} <input type="number" id="scoreInput" class="input-small-discreet"
-                            placeholder="00000"></span>
-                    <span>${DINO_TRANSLATE('immortalityText')} <label> <input type="checkbox" id="toggleCheckboxImmortality"></label></span>
-                    <span>${DINO_TRANSLATE('autoJumpText')} <label> <input type="checkbox" id="toggleCheckboxBot"></label></span>
-                    <span>${DINO_TRANSLATE('invisibleText')} <label> <input type="checkbox" id="toggleCheckboxInvisible"></label></span>
+                    <span>${DINO_TRANSLATE('jumpHeight')} <input type="number" id="jumpHeightInput" class="input-small-discreet" placeholder="10"></span>
+                    <span>${DINO_TRANSLATE('speedText')} <input type="number" id="speedInput" class="input-small-discreet" placeholder="7"></span>
+                    <span>${DINO_TRANSLATE('scoreText')} <input type="number" id="scoreInput" class="input-small-discreet" placeholder="00000"></span>
+                    <span>${DINO_TRANSLATE('immortalityText')} <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxImmortality" tabindex="-1"></label></span>
+                    <span>${DINO_TRANSLATE('autoJumpText')} <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxBot" tabindex="-1"></label></span>
+                    <span>${DINO_TRANSLATE('invisibleText')} <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxInvisible" tabindex="-1"></label></span>
                     <span>${DINO_TRANSLATE('scorePlus')} <button id="increaseScoreButton" class="btn-small-discreet"> 1000 </button></span>
                     <span>${DINO_TRANSLATE('walkIn')} <button id="toggleAirWalkButton"
                             class="btn-small-discreet">${DINO_TRANSLATE('theAir')}</button></span>
@@ -1758,6 +2011,15 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                             </svg>
                         </div>
+
+                        <div class="switch-container">
+                            <span class="switch-label">${DINO_TRANSLATE('ToolbarLabel')}</span>
+                            <label class="checkbox-wrap-green">
+                                <input type="checkbox" id="toggleToolbar">
+                            </label>
+                        </div>
+
+
                         <div class="switch-container">
                             <span class="switch-label">${DINO_TRANSLATE('switchLabelLang')}</span>
                             <div id="flag-selector" class="flag-conteneur">
@@ -1936,6 +2198,10 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
                 };
 
+
+
+
+
                 const renderThemeOptions = () => {
                     if (!themeOptionsContainer) return;
                     themeOptionsContainer.innerHTML = '';
@@ -2024,7 +2290,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     selectedFlag.setAttribute('data-lang', newLang);
 
                     await GM_setValue('selectedLang', newLang);
-                    try { localStorage.setItem('DINO_LANG', newLang); } catch (e) {}
+                    try { localStorage.setItem('DINO_LANG', newLang); } catch (e) { }
 
 
                     currentLang = newLang;
@@ -2041,13 +2307,13 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                             selectedFlag.src = flag.src;
                             selectedFlag.setAttribute('data-lang', savedLang);
                             currentLang = savedLang;
-                            try { localStorage.setItem('DINO_LANG', savedLang); } catch (e) {}
+                            try { localStorage.setItem('DINO_LANG', savedLang); } catch (e) { }
                         }
                     } else {
                         selectedFlag.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/440px-Flag_of_the_United_Kingdom_%283-5%29.svg.png';
                         selectedFlag.setAttribute('data-lang', 'en');
                         currentLang = 'en';
-                        try { localStorage.setItem('DINO_LANG', 'en'); } catch (e) {}
+                        try { localStorage.setItem('DINO_LANG', 'en'); } catch (e) { }
                     }
                 }
 
@@ -2137,6 +2403,29 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     toggleShortcutEl.addEventListener('change', async function () {
                         isShortcutEnabled = this.checked;
                         await GM_setValue('shortcutEnabled', isShortcutEnabled);
+                    });
+                }
+
+                (async function initToolbarState() {
+                    const savedToolbar = await GM_getValue('toolbarVisible', true);
+                    isToolbarVisible = savedToolbar;
+                    const toolbarCheckbox = getMenuElementById('toggleToolbar');
+                    if (toolbarCheckbox) toolbarCheckbox.checked = savedToolbar;
+                    if (typeof updateToolbarVisibility === 'function') {
+                        updateToolbarVisibility();
+                    }
+                })();
+
+                const toggleToolbarEl = getMenuElementById('toggleToolbar');
+                if (toggleToolbarEl) {
+                    toggleToolbarEl.addEventListener('change', async function () {
+                        isToolbarVisible = this.checked;
+                        if (typeof GM_setValue !== 'undefined') {
+                            await GM_setValue('toolbarVisible', isToolbarVisible);
+                        }
+                        if (typeof updateToolbarVisibility === 'function') {
+                            updateToolbarVisibility();
+                        }
                     });
                 }
 
@@ -2770,7 +3059,8 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     '.high-scores *',
                     '#main-content p',
                     '.copyright',
-                    '.___wrapper h3'
+                    '.___wrapper h3',
+                    'li span'
                 ],
                 'trex-runner.com': [
                     '.desc *',
@@ -2990,7 +3280,6 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.12);
                 font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
                 z-index:999;
-                /* Réserve de l'espace à droite pour la croix afin d'éviter le chevauchement */
                 padding-right: 52px;
             }
             .dz-divider{
@@ -3005,12 +3294,12 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             }
             .dz-btn-close{
                 position:absolute;
-                top:4px; right:6px; /* légèrement en haut et à droite */
+                top:4px; right:6px;
                 transform: none;
                 width:20px; height:20px;
                 border-radius:0;
                 background: transparent !important;
-                color:#e04845; /* croix rouge */
+                color:#e04845;
                 border:none;
                 outline:none;
                 appearance:none;
@@ -3089,6 +3378,15 @@ The French Terms of Use linked above is the definitive policy; in case of any di
         const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
         let frame, stage, controls, runner, canvas;
+
+        function updateToolbarVisibility() {
+            try {
+                const allCtrls = document.querySelectorAll('.dz-controls');
+                allCtrls.forEach(c => {
+                    c.style.display = isToolbarVisible ? 'flex' : 'none';
+                });
+            } catch (_) { }
+        }
         function dedupeZoomUI() {
             try {
                 const allFrames = document.querySelectorAll('.dz-frame');
@@ -3103,7 +3401,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         c.remove();
                     }
                 });
-            } catch (_) {}
+            } catch (_) { }
         }
         let baseW = 600, baseH = 150;
         let scale = 1;
@@ -3136,7 +3434,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             }
         }
 
-function ensureScaffold() {
+        function ensureScaffold() {
             if (!runner) return;
 
             if (!frame || !frame.isConnected) {
@@ -3158,7 +3456,6 @@ function ensureScaffold() {
                 if (existing) {
                     controls = existing;
                 } else {
-                    // remove stray duplicates before creating
                     document.querySelectorAll('.dz-controls').forEach(c => { if (!frame.contains(c)) c.remove(); });
                     controls = document.createElement('div');
                     controls.className = 'dz-controls';
@@ -3182,6 +3479,7 @@ function ensureScaffold() {
 
                         `;
                     frame.insertBefore(controls, stage);
+                    updateToolbarVisibility();
                     controls.addEventListener('click', (e) => {
                         const b = e.target.closest('.dz-btn');
                         if (!b) return;
@@ -3190,7 +3488,20 @@ function ensureScaffold() {
                         else if (b.dataset.act === 'out') zoomOut();
                         else if (b.dataset.act === 'fullscreen') toggleFullscreen();
                         else if (b.dataset.act === 'pause' && typeof window.togglePause === 'function') window.togglePause();
-                        else if (b.dataset.act === 'close') { controls.style.display = 'none'; }
+                        else if (b.dataset.act === 'close') {
+                            isToolbarVisible = false;
+                            try {
+                                if (typeof GM_setValue !== 'undefined') {
+                                    GM_setValue('toolbarVisible', isToolbarVisible);
+                                }
+                            } catch (_) { }
+                            try {
+                                if (typeof setMenuCheckboxState === 'function') {
+                                    setMenuCheckboxState('toggleToolbar', false);
+                                }
+                            } catch (_) { }
+                            updateToolbarVisibility();
+                        }
 
                         b.blur();
                     });

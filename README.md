@@ -18,13 +18,15 @@ With a choice of theme for the dino (change the environment and the dino):
 - Trump
 - Joker
 - Batman
-- Ninja
 - Night
 - Squid Game
-- Santa
+- Santa Claus
+- Halloween
 - Wednesday
 - Naruto
 - Godzilla
+- Cat
+- Ninja
 - Classic
 
 **DINOcheat** was created on February 9, 2024.  

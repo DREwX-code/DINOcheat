@@ -1,20 +1,22 @@
-## Introduction
+## Installation
 
-This repository contains an incredible script for the **Chrome Dino game**, offering several unique and customizable features that elevate the classic game experience.
-With this script, you can tweak gameplay elements such as jump height, speed, and even unlock special themes like **Night Mode**, **Color Mode**, or custom character skins like **Mario**, **Batman**, and **Joker**. Designed to be user-friendly and efficient, this script allows you to enjoy the game in a whole new way, whether you’re looking for a fun twist or simply want to enhance your gaming session.
+Follow these steps to install **DINOcheat** from GreasyFork:
 
-To install the Dino Cheat script from GreasyFork, follow these steps:
+1. **Open the GreasyFork page**  
+   Visit the script page on [GreasyFork](https://greasyfork.org/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel).
 
-1. **Access GreasyFork**: Click [here](https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel?locale_override=1) to open the script page.
+2. **Install Tampermonkey**  
+   This script requires the Tampermonkey userscript manager.  
+   Install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo).
 
-2. **Install Tampermonkey**:
-   - If you haven't installed Tampermonkey yet, go to the [Chrome Web Store](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) and click "Add to Chrome" to install it.
+3. **Install the script**  
+   - Return to the GreasyFork script page.  
+   - Click the **“Install this script”** button.  
+   - Confirm the installation when prompted by Tampermonkey.
 
-3. **Install the Script**:
-   - Once Tampermonkey is installed, return to the GreasyFork script page.
-   - Click on the **"Install this script"** button on the script page.
+Once completed, the script is installed and ready to use.
 
-### Usage
-Once installed, you can play the Dino game on Google Chrome, and the script will apply the added features and modifications.
+## Usage
 
-## **By Dℝ∃wX**
+Open the Google Chrome Dino game (for example via [this page](https://dino-chrome.com)).  
+Once the game starts, the DINOcheat menu and features will be available.

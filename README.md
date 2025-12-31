@@ -1,39 +1,79 @@
 # DINOcheat
 
-DINOcheat is a Tampermonkey script for the Dino Chrome game, giving access to a super menu full of features:
+[![GreasyFork installations](https://img.shields.io/greasyfork/dt/486972?style=flat-square&label=installations)](https://greasyfork.org/fr/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel)
+[![GreasyFork version](https://img.shields.io/greasyfork/v/486972?style=flat-square&label=version)](https://greasyfork.org/fr/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/versions)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square)](./LICENSE)
 
-- Adjust speed
-- Be Immortal 
-- Walking on air
-- Choose the number of points for the score
-- Activate an automatic Bot to overcome obstacles
-- Add 1000 to score
-- Be invisible
-- Pause the game
+<p>
+<strong><a href="https://greasyfork.org/fr/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel">DINOcheat</a></strong> is a Tampermonkey userscript for the Google Chrome Dino game.
+It adds an advanced menu that allows you to modify gameplay behavior and enable various features in real time.
+</p>
 
-With a choice of theme for the dino (change the environment and the dino):
+## Features
 
-- Colorful
-- Mario
-- Trump
-- Joker
-- Batman
-- Night
-- Squid Game
-- Santa Claus
-- Halloween
-- Wednesday
-- Naruto
-- Godzilla
-- Cat
-- Ninja
-- Classic
+<ul>
+  <li>Adjust game speed</li>
+  <li>Immortality mode</li>
+  <li>Walk in the air</li>
+  <li>Set custom score values</li>
+  <li>Enable an automatic bot to avoid obstacles</li>
+  <li>Add points to the score</li>
+  <li>Invisible mode</li>
+  <li>Pause the game at any time</li>
+</ul>
 
-**DINOcheat** was created on February 9, 2024.  
-This script is subject to conditions of use.
+## Themes
 
-You can install the script at [https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel](https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel)
+<p>
+DINOcheat includes multiple visual themes to customize the dinosaur and the environment:
+</p>
 
-Don't hesitate to leave a comment, or make suggestions for improvement via:  
-📧 **dr3wx.andrew@gmail.com**  
-or on [GreasyFork](https://greasyfork.org/en/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/feedback).
+<ul>
+  <li>Colorful</li>
+  <li>Mario</li>
+  <li>Trump</li>
+  <li>Joker</li>
+  <li>Batman</li>
+  <li>Night</li>
+  <li>Squid Game</li>
+  <li>Santa Claus</li>
+  <li>Halloween</li>
+  <li>Wednesday</li>
+  <li>Naruto</li>
+  <li>Godzilla</li>
+  <li>Cat</li>
+  <li>Ninja</li>
+  <li>Classic</li>
+</ul>
+
+## Installation
+
+<p>
+You can install the script <a href="https://github.com/DREwX-code/DINOcheat/blob/main/Install_DINOcheat.md">here</a>.
+</p>
+
+## Project information
+
+<p>
+<strong>DINOcheat</strong> was created on <strong>February 9, 2024</strong>.
+</p>
+
+<p>
+This script is subject to specific <a href="https://github.com/DREwX-code/DINOcheat/blob/main/Install_DINOcheat.md">terms of use</a>.
+</p>
+
+## Feedback and contributions
+
+<p>
+Feedback, bug reports, and improvement suggestions are welcome.
+</p>
+
+## Author
+
+Developed and maintained by <strong>Dℝ∃wX</strong> (<strong><a href="https://github.com/DREwX-code">DREwX-code</a>).  
+Project designed for simplicity, performance, and user-focused evolution.
+
+## License
+
+This project is licensed under the <strong>Apache License 2.0</strong>.  
+You are free to use, modify, and redistribute it under the terms of the license.

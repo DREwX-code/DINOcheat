@@ -1,4 +1,4 @@
-# DINOcheat
+# DINOcheat Userscript
 
 [![GreasyFork installs](https://img.shields.io/greasyfork/dt/486972?style=flat-square&label=installs&color=3b82f6)](https://greasyfork.org/fr/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel)
 [![GreasyFork version](https://img.shields.io/greasyfork/v/486972?style=flat-square&label=version&color=8b5cf6)](https://greasyfork.org/fr/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/versions)

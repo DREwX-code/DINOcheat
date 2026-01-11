@@ -32,15 +32,15 @@ limitations under the License.
 // @name:de         DINOcheat : Hack/Cheat für Dino Google & Chrome
 // @name:zh-CN      DINOcheat ：Hack/Cheat Dino Google & Chrome
 // @namespace       http://tampermonkey.net/
-// @version         16-11-2025__1.8.5
-// @icon            https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/D%E2%84%9D%E2%88%83wX_image/D%E2%84%9D%E2%88%83wX_logo.png
-// @description     Use the super features to make your Dino limitless: auto bot ｜ speed ｜ score ｜ immortal ｜ fly ｜ invisibility ｜ pause
-// @description:fr  Utilisez les super fonctionnalités pour avoir un dino sans limites : bot automatique ｜ vitesse ｜ score ｜ immortel ｜ voler ｜ invisibilité ｜ pause
-// @description:es  Usa las super funciones para tener un Dino sin límites: bot automático ｜ velocidad ｜ puntuación ｜ inmortal ｜ volar ｜ invisibilidad ｜ pausa
-// @description:ja  スーパー機能を使って制限のないDinoを手に入れよう： 自動ボット ｜ 速度 ｜ スコア ｜ 不死 ｜ 飛行 ｜ 透明化 ｜ 一時停止
-// @description:it  Usa le super funzionalità per avere un Dino senza limiti: bot automatico ｜ velocità ｜ punteggio ｜ immortale ｜ volare ｜ invisibilità ｜ pausa
-// @description:de  Nutze die Superfunktionen, um deinen Dino grenzenlos zu machen: automatischer Bot ｜ Geschwindigkeit ｜ Punktzahl ｜ unsterblich ｜ fliegen ｜ Unsichtbarkeit ｜ Pause
-// @description:zh-CN  使用超级功能让你的恐龙无限制： 自动机器人 ｜ 速度 ｜ 分数 ｜ 不朽 ｜ 飞行 ｜ 隐身 ｜ 暂停
+// @version         19-11-2025__1.8.6
+// @icon            https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/assets/logo/drewx_logo.png
+// @description     Use the super features to make your Dino limitless: auto bot ｜ speed ｜ score ｜ immortal ｜ fly ｜ invisibility ｜ pause ｜ 16 dino skins
+// @description:fr  Utilisez les super fonctionnalités pour avoir un dino sans limites : bot automatique ｜ vitesse ｜ score ｜ immortel ｜ voler ｜ invisibilité ｜ pause ｜ 16 skins dino
+// @description:es  Usa las super funciones para tener un Dino sin límites: bot automático ｜ velocidad ｜ puntuación ｜ inmortal ｜ volar ｜ invisibilidad ｜ pausa ｜ 16 skins de dino
+// @description:ja  スーパー機能を使って制限のないDinoを手に入れよう： 自動ボット ｜ 速度 ｜ スコア ｜ 不死 ｜ 飛行 ｜ 透明化 ｜ 一時停止 ｜ 16種類のスキン
+// @description:it  Usa le super funzionalità per avere un Dino senza limiti: bot automatico ｜ velocità ｜ punteggio ｜ immortale ｜ volare ｜ invisibilità ｜ pausa ｜ 16 skin dino
+// @description:de  Nutze die Superfunktionen, um deinen Dino grenzenlos zu machen: automatischer Bot ｜ Geschwindigkeit ｜ Punktzahl ｜ unsterblich ｜ fliegen ｜ Unsichtbarkeit ｜ Pause ｜ 16 Dino-Skins
+// @description:zh-CN  使用超级功能让你的恐龙无限制： 自动机器人 ｜ 速度 ｜ 分数 ｜ 不朽 ｜ 飞行 ｜ 隐身 ｜ 暂停 ｜ 15款恐龙皮肤
 // @match        *://chromedino.com/*
 // @match        *://tuckercraig.com/dino/*
 // @match        *://trex-runner.com/*
@@ -55,7 +55,7 @@ limitations under the License.
 // @copyright    2025 DℝᴇwX
 // @license      Apache-2.0
 // @run-at       document-idle
-// @require      https://update.greasyfork.org/scripts/554218/1696543/DINOcheat%20Translation%20Library.js
+// @require      https://update.greasyfork.org/scripts/554218/1698303/DINOcheat%20Translation%20Library.js
 // @tag          games
 // @tag          bot
 // @tag          custom
@@ -63,8 +63,6 @@ limitations under the License.
 // @tag          immortal
 // @tag          dino
 // @tag          play
-// @downloadURL  https://update.greasyfork.org/scripts/486972/DINOcheat%20%3A%20hackcheat%20dino%20google%20%20chrome.user.js
-// @updateURL    https://update.greasyfork.org/scripts/486972/DINOcheat%20%3A%20hackcheat%20dino%20google%20%20chrome.meta.js
 // ==/UserScript==
 
 
@@ -354,7 +352,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 var newLink = document.createElement('a');
                 newLink.href = "#";
                 newLink.innerHTML = `
-                <img src="https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/D%E2%84%9D%E2%88%83wX_image/D%E2%84%9D%E2%88%83wX_logo.png" width="40">
+                <img src="https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/assets/logo/drewx_logo.png" width="40">
                 <span>${DINO_TRANSLATE('menu')}</span>
                 `;
 
@@ -396,7 +394,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 var menuLink = document.createElement('a');
                 menuLink.href = "#";
                 menuLink.innerHTML = `
-                    <img src="https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/D%E2%84%9D%E2%88%83wX_image/D%E2%84%9D%E2%88%83wX_logo.png>
+                    <img src="https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/assets/logo/drewx_logo.png">
                     <span>${DINO_TRANSLATE('menu')}</span>
                 `;
 
@@ -1529,7 +1527,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             infoPanel.appendChild(newsTitle);
 
             const newsImg = document.createElement('img');
-            newsImg.src = 'https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/D%E2%84%9D%E2%88%83wX_image/DINOcheat%20TOOLBAR.png';
+            newsImg.src = 'https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/assets/toolbar/dinocheat_toolbar.png';
             newsImg.alt = 'Nouvelle fonctionnalité';
             newsImg.style.width = '100%';
             newsImg.style.borderRadius = '6px';

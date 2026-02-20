@@ -48,10 +48,26 @@ DINOcheat includes multiple visual themes to customize the dinosaur and the envi
   <li>Classic</li>
 </ul>
 
+## Languages
+
+<p>DINOcheat is fully localized and available in the following languages:</p>
+<ul>
+  <li>🇬🇧 English</li>
+  <li>🇫🇷 Français</li>
+  <li>🇪🇸 Español</li>
+  <li>🇮🇹 Italiano</li>
+  <li>🇩🇪 Deutsch</li>
+  <li>🇯🇵 日本語</li>
+  <li>🇨🇳 中文</li>
+</ul>
+<p>
+The interface language automatically adapts for a seamless user experience.
+</p>
+
 ## Installation
 
 <p>
-You can install the script <a href="https://github.com/DREwX-code/Ultimate-Text-Selection-Translator/blob/main/Install%20this%20script.md">here</a>.
+You can install the script <a href="https://github.com/DREwX-code/DINOcheat/blob/main/Install_DINOcheat.md">here</a>.
 </p>
 
 ## Project information
@@ -79,8 +95,8 @@ Github Issues
 
 ## Author
 
-Developed and maintained by <strong>Dℝ∃wX</strong> (<strong><a href="https://github.com/DREwX-code">DREwX-code</a>).  
-Project designed for simplicity, performance, and user-focused evolution.
+Developed and maintained by <strong>Dℝ∃wX</strong> (<a href="https://github.com/DREwX-code">DREwX-code</a>).  
+Engineered for performance, precision, and continuous evolution.
 
 ## License
 

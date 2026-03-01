@@ -77,25 +77,18 @@ You can install the script <a href="https://github.com/DREwX-code/DINOcheat/blob
 </p>
 
 <p>
-This script is subject to specific <a href="https://github.com/DREwX-code/DINOcheat/blob/main/Install_DINOcheat.md">terms of use</a>.
+This script is subject to specific <a href="https://github.com/DREwX-code/DINOcheat/blob/main/Terms-of-use_FR.md">terms of use</a>.
 </p>
 
-## Feedback and contributions
+## Feedback & Contributions
 
-<p>
-Feedback, bug reports, and improvement suggestions are welcome via
-<a href="https://greasyfork.org/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/feedback">
-GreasyFork feedback
-</a>
-or
-<a href="https://github.com/DREwX-code/DINOcheat/issues">
-Github Issues
-</a>.
-</p>
+Feedback, bug reports, and improvement suggestions are welcome.
+- [GreasyFork Feedback](https://greasyfork.org/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/feedback)
+- [GitHub Issues](https://github.com/DREwX-code/DINOcheat/issues)
 
 ## Author
 
-Developed and maintained by <strong>Dℝ∃wX</strong> (<a href="https://github.com/DREwX-code">DREwX-code</a>).  
+Developed and maintained by **Dℝ∃wX** (GitHub: [DREwX-code](https://github.com/DREwX-code)).   
 Engineered for performance, precision, and continuous evolution.
 
 ## License

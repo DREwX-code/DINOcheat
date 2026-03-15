@@ -8,10 +8,10 @@
 
 <p>
 <strong><a href="https://greasyfork.org/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel">DINOcheat</a></strong> is a Tampermonkey userscript for the Google Chrome Dino game.
-It adds an advanced menu that allows you to modify gameplay behavior and enable various features in real time.
+DINOcheat adds an advanced in-game menu that lets you modify gameplay behavior and activate multiple features in real time.
 </p>
 
-## Features
+## Gameplay Features
 
 <ul>
   <li>Adjust game speed</li>
@@ -63,6 +63,19 @@ DINOcheat includes multiple visual themes to customize the dinosaur and the envi
 <p>
 The interface language automatically adapts for a seamless user experience.
 </p>
+
+## Supported Sites
+
+DINOcheat works on several Chrome Dino game implementations, including:
+
+- https://chromedino.com
+- https://tuckercraig.com/dino
+- https://trex-runner.com
+- https://dino-chrome.com
+- https://dinorunner.com
+- https://googledino.com
+
+It may also work on other Chrome Dino clones that keep the original game structure.
 
 ## Installation
 

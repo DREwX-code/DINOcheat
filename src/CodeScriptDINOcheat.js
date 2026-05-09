@@ -1,28 +1,3 @@
-//This script was created by DREwX, and is licensed under License 2.0.
-//To use this script you must install it via Greasyfork.
-//For more information, please contact me on github.
-//Previous versions are available on Greasyfork.
-
-/*
-Copyright 2025 Dℝ∃wX
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    https://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-
-
-
-
 // ==UserScript==
 // @name            DINOcheat : hack/cheat dino google & chrome
 // @name:fr         DINOcheat : hack/cheat dino google & chrome
@@ -32,7 +7,7 @@ limitations under the License.
 // @name:de         DINOcheat : Hack/Cheat für Dino Google & Chrome
 // @name:zh-CN      DINOcheat ：Hack/Cheat Dino Google & Chrome
 // @namespace       http://tampermonkey.net/
-// @version         19-11-2025__1.8.6
+// @version         1.8.7
 // @icon            https://raw.githubusercontent.com/DREwX-code/DINOcheat/refs/heads/main/assets/logo/drewx_logo.png
 // @description     Use the super features to make your Dino limitless: auto bot ｜ speed ｜ score ｜ immortal ｜ fly ｜ invisibility ｜ pause ｜ 16 dino skins
 // @description:fr  Utilisez les super fonctionnalités pour avoir un dino sans limites : bot automatique ｜ vitesse ｜ score ｜ immortel ｜ voler ｜ invisibilité ｜ pause ｜ 16 skins dino
@@ -52,10 +27,10 @@ limitations under the License.
 // @grant        GM_setValue
 // @connect      greasyfork.org
 // @author       Dℝ∃wX
-// @copyright    2025 DℝᴇwX
+// @copyright    2025-2026 Dℝ∃wX
 // @license      Apache-2.0
 // @run-at       document-idle
-// @require      https://update.greasyfork.org/scripts/554218/1698303/DINOcheat%20Translation%20Library.js
+// @require      https://update.greasyfork.org/scripts/554218/1820356/DINOcheat%20Translation%20Library.js
 // @tag          games
 // @tag          bot
 // @tag          custom
@@ -63,11 +38,13 @@ limitations under the License.
 // @tag          immortal
 // @tag          dino
 // @tag          play
+// @downloadURL https://update.greasyfork.org/scripts/486972/DINOcheat%20%3A%20hackcheat%20dino%20google%20%20chrome.user.js
+// @updateURL https://update.greasyfork.org/scripts/486972/DINOcheat%20%3A%20hackcheat%20dino%20google%20%20chrome.meta.js
 // ==/UserScript==
 
 
 /*
-Copyright 2025 Dℝ∃wX
+Copyright 2025-2026 Dℝ∃wX
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -95,10 +72,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 (async function () {
 
-
-    const currentURL = window.location.href;
-
-    if (currentURL.includes(".png")) {
+    if (window.location.pathname.endsWith(".png")) {
     } else {
 
         try {
@@ -114,7 +88,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     return GM_info.script.version;
                 }
             } catch (_) { }
-            return '2-11-2025__1.8.5';
+            return '1.8.7';
         }
 
         function httpGetCrossOrigin(url) {
@@ -149,6 +123,62 @@ The French Terms of Use linked above is the definitive policy; in case of any di
         function getLangSync() {
             try { const v = localStorage.getItem('DINO_LANG'); if (v) return v; } catch (_) { }
             return (navigator.language ? navigator.language.slice(0, 2) : 'en') || 'en';
+        }
+
+        let currentLang = getLangSync();
+
+        function getRunnerInstance() {
+            try {
+                return (typeof Runner !== 'undefined' && Runner && Runner.instance_) ? Runner.instance_ : null;
+            } catch (_) {
+                return null;
+            }
+        }
+
+        function getRunnerConstructor() {
+            try {
+                return (typeof Runner !== 'undefined' && Runner) ? Runner : null;
+            } catch (_) {
+                return null;
+            }
+        }
+
+        function showRunnerUnavailable() {
+            const fallback = 'Runner instance not available. Start the game, then try again.';
+            try {
+                alert(DINO_TRANSLATE('runnerInstanceNotAvailable') || fallback);
+            } catch (_) {
+                alert(fallback);
+            }
+        }
+
+        function requireRunnerInstance() {
+            const runner = getRunnerInstance();
+            if (!runner) {
+                showRunnerUnavailable();
+                return null;
+            }
+            return runner;
+        }
+
+        function applyI18n(root = document) {
+            if (!root) return;
+
+            root.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = DINO_TRANSLATE(el.dataset.i18n);
+            });
+
+            root.querySelectorAll('[data-i18n-html]').forEach(el => {
+                el.innerHTML = DINO_TRANSLATE(el.dataset.i18nHtml);
+            });
+
+            root.querySelectorAll('[data-i18n-title]').forEach(el => {
+                el.title = DINO_TRANSLATE(el.dataset.i18nTitle);
+            });
+
+            root.querySelectorAll('[data-i18n-href-locale]').forEach(el => {
+                el.href = `https://greasyfork.org/${DINO_TRANSLATE('link')}/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/feedback?locale_override=1`;
+            });
         }
 
         function showUpdatePopup(latestVersion, installHref) {
@@ -375,7 +405,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
                 var newLink1 = document.createElement('a');
                 newLink1.href = "#";
-                newLink1.textContent = DINO_TRANSLATE('menu');
+                newLink1.textContent = DINO_TRANSLATE('menu').toUpperCase();
                 newLink1.style.cursor = 'pointer';
 
                 newLink1.addEventListener('click', function (e) {
@@ -488,7 +518,10 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
             .flag-container img {
                 width: 40px;
-                height: auto;
+                height: 28px;
+                object-fit: cover;
+                display: block;
+                box-sizing: border-box;
                 border-radius: 4px;
                 margin-right: 10px;
                 transition: transform 0.2s ease;
@@ -521,7 +554,9 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 display: block;
                 margin: 6px auto;
                 width: 36px;
-                height: auto;
+                height: 24px;
+                object-fit: cover;
+                box-sizing: border-box;
                 border-radius: 4px;
                 transition: transform 0.2s ease;
             }
@@ -560,18 +595,18 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             const popup = document.createElement('div');
             popup.className = 'super-error-popup';
             popup.innerHTML = `
-            <div class="flag-container">
-                <img src="" alt="flagselect" id="flag-select" class="flag" data-lang="">
-                <div class="flag-dropdown" id="flag-dropdown">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" id="flag-fr" class="flag" data-lang="fr">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" id="flag-es" class="flag" data-lang="es">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/langfr-450px-Flag_of_Italy.svg.png" id="flag-it" class="flag" data-lang="it">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/440px-Flag_of_the_United_Kingdom_%283-5%29.svg.png" id="flag-en" class="flag" data-lang="en">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/langfr-2880px-Flag_of_Germany.svg.png" id="flag-de" class="flag" data-lang="de">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg" id="flag-zh-CN" class="flag" data-lang="zh-CN">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1599px-Flag_of_Japan.svg.png" id="flag-ja" class="flag" data-lang="ja">
-                </div>
-            </div>
+<div class="flag-container">
+    <img src="" alt="flagselect" id="flag-select" class="flag" data-lang="">
+    <div class="flag-dropdown" id="flag-dropdown">
+        <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" id="flag-fr" class="flag" data-lang="fr">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" id="flag-es" class="flag" data-lang="es">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg" id="flag-it" class="flag" data-lang="it">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" id="flag-en" class="flag" data-lang="en">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg" id="flag-de" class="flag" data-lang="de">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg" id="flag-zh-CN" class="flag" data-lang="zh-CN">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg" id="flag-ja" class="flag" data-lang="ja">
+    </div>
+</div>
             <span class="close-btn">&times;</span>
             <div class="content" id="content-message">
                 (Dℝ∃wX) Hello, sorry but this script does not work on this site. I advise you to use this site <a href="https://chromedino.com/" target="_blank">https://chromedino.com/</a>
@@ -582,17 +617,16 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             const flagContainer = document.querySelector('.flag-container');
             const flagDropdown = document.getElementById('flag-dropdown');
             const flags = document.querySelectorAll('#flag-dropdown .flag');
-            const currentLang = await GM_getValue('selectedLang', 'en');
             const savedLang = await GM_getValue('selectedLang', 'en');
 
             const LANG_TO_FLAG = {
-                en: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/440px-Flag_of_the_United_Kingdom_%283-5%29.svg.png',
+                en: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg',
                 fr: 'https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg',
                 es: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg',
-                it: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/langfr-450px-Flag_of_Italy.svg.png',
-                de: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/langfr-2880px-Flag_of_Germany.svg.png',
+                it: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg',
+                de: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg',
                 'zh-CN': 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-                ja: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1599px-Flag_of_Japan.svg.png'
+                ja: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg'
             };
 
             const savedFlag = LANG_TO_FLAG[savedLang] || LANG_TO_FLAG.en;
@@ -744,10 +778,23 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         let isShortcutEnabled = false;
         let isToolbarVisible = true;
+        let isWalkingInTheAir = false;
 
         let menuPopup = null;
         let menuShadow = null;
-        let windowElement = null;
+        let menuAbortController = null;
+        let pauseIconInterval = null;
+
+        function cleanupMenuRuntime() {
+            if (menuAbortController) {
+                menuAbortController.abort();
+                menuAbortController = null;
+            }
+            if (pauseIconInterval) {
+                clearInterval(pauseIconInterval);
+                pauseIconInterval = null;
+            }
+        }
 
         const getMenuElementById = (id) => menuShadow ? menuShadow.querySelector(`#${id}`) : null;
         const queryMenu = (selector) => menuShadow ? menuShadow.querySelector(selector) : null;
@@ -761,11 +808,17 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             options.forEach(option => {
                 option.classList.toggle('active', option.dataset.theme === theme);
             });
+            const currentSkinLabel = getMenuElementById('currentSkinLabel');
+            if (currentSkinLabel) {
+                currentSkinLabel.textContent = DINO_TRANSLATE(theme);
+            }
         };
 
         function injectDistanceCode() {
-            const increment = 1000 / Runner.instance_.distanceMeter.config.COEFFICIENT;
-            Runner.instance_.distanceRan += increment;
+            const runner = requireRunnerInstance();
+            if (!runner) return;
+            const increment = 1000 / runner.distanceMeter.config.COEFFICIENT;
+            runner.distanceRan += increment;
         }
 
 
@@ -780,7 +833,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             background: rgba(255, 255, 255, 0.9);
             border: 1px solid #333;
             border-radius: 12px;
-            padding: 20px;
+            padding: 20px 20px 42px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             z-index: 9999;
             display: none;
@@ -814,7 +867,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             color: #555;
         }
 
-        .content span {
+        .content > span {
             display: block;
             margin-bottom: 8px;
         }
@@ -837,6 +890,22 @@ The French Terms of Use linked above is the definitive policy; in case of any di
         .dropdown-title {
         position: relative;
         padding-right: 18px;
+        }
+
+        .current-skin-label {
+        max-width: 96px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 2px 8px;
+        border: 1px solid rgba(27, 78, 209, 0.18);
+        border-radius: 999px;
+        background: rgba(27, 78, 209, 0.08);
+        color: #1b4ed1;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.4;
+        cursor: pointer;
         }
 
         .dropdown-title::after {
@@ -950,6 +1019,13 @@ The French Terms of Use linked above is the definitive policy; in case of any di
         animation: blueGlow 1.6s ease-in-out infinite alternate;
         }
 
+        :host(.theme-dragging),
+        :host(.theme-dragging) *,
+        .theme-options.drag-active,
+        .theme-options.drag-active * {
+        cursor: grabbing !important;
+        }
+
         @keyframes blueGlow {
         from {
             box-shadow: 0 0 8px rgba(77, 166, 255, 0.35);
@@ -984,7 +1060,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.18);
             color: #fff;
-            cursor: pointer;
+            cursor: grab;
             user-select: none;
             transition: background 0.2s ease, transform 0.2s ease;
         }
@@ -1233,12 +1309,15 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         .terms-of-use {
             position: absolute;
-            top: 97%;
+            bottom: 12px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             transition: transform 0.3s ease, color 0.3s ease;
             text-align: center;
             font-size: 12px;
+            line-height: 1.25;
+            letter-spacing: 0.1px;
+            width: 86%;
             color: #888;
             cursor: pointer;
         }
@@ -1302,15 +1381,15 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             }
         });
 
-
-        let invisibleInterval;
-
         function toggleInvisible() {
+            const runner = requireRunnerInstance();
+            if (!runner || !runner.tRex || !runner.tRex.config) return;
+
             if (!isInvisibleActive) {
-                Runner.instance_.tRex.config.HEIGHT = -20;
+                runner.tRex.config.HEIGHT = -20;
                 setMenuCheckboxState('toggleCheckboxInvisible', true);
             } else {
-                Runner.instance_.tRex.config.HEIGHT = 47;
+                runner.tRex.config.HEIGHT = 47;
                 setMenuCheckboxState('toggleCheckboxInvisible', false);
             }
 
@@ -1330,18 +1409,30 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         function toggleBot() {
             if (!isBotActive) {
+                const runner = requireRunnerInstance();
+                if (!runner) return;
+
                 function dispatchKey(type, key) {
                     document.dispatchEvent(new KeyboardEvent(type, { keyCode: key }));
                 }
 
                 botInterval = setInterval(function () {
+                    const runner = getRunnerInstance();
+                    if (!runner) {
+                        clearInterval(botInterval);
+                        botInterval = null;
+                        isBotActive = false;
+                        setMenuCheckboxState('toggleCheckboxBot', false);
+                        return;
+                    }
+
                     const KEY_CODE_SPACE_BAR = 32;
                     const KEY_CODE_ARROW_DOWN = 40;
-                    const CANVAS_HEIGHT = Runner.instance_.dimensions.HEIGHT;
-                    const DINO_HEIGHT = Runner.instance_.tRex.config.HEIGHT;
+                    const CANVAS_HEIGHT = runner.dimensions.HEIGHT;
+                    const DINO_HEIGHT = runner.tRex.config.HEIGHT;
 
-                    const obstacle = Runner.instance_.horizon.obstacles[0];
-                    const speed = Runner.instance_.currentSpeed;
+                    const obstacle = runner.horizon.obstacles[0];
+                    const speed = runner.currentSpeed;
 
                     if (obstacle) {
                         const w = obstacle.width;
@@ -1360,7 +1451,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                             }
                         }
                     }
-                }, Runner.instance_.msPerFrame);
+                }, runner.msPerFrame || 16);
 
                 setMenuCheckboxState('toggleCheckboxBot', true);
             } else {
@@ -1382,15 +1473,24 @@ The French Terms of Use linked above is the definitive policy; in case of any di
         });
 
 
-        let originalGameOver = Runner.prototype.gameOver;
+        let originalGameOver = null;
 
         function toggleImmortality() {
+            const RunnerCtor = getRunnerConstructor();
+            if (!RunnerCtor || !RunnerCtor.prototype) {
+                showRunnerUnavailable();
+                return;
+            }
+
             if (!isImmortal) {
-                Runner.prototype.gameOver = function () { };
+                originalGameOver = RunnerCtor.prototype.gameOver;
+                RunnerCtor.prototype.gameOver = function () { };
                 setMenuCheckboxState('toggleCheckboxImmortality', true);
             } else {
 
-                Runner.prototype.gameOver = originalGameOver;
+                if (originalGameOver) {
+                    RunnerCtor.prototype.gameOver = originalGameOver;
+                }
                 setMenuCheckboxState('toggleCheckboxImmortality', false);
             }
 
@@ -1519,7 +1619,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 
             const newsTitle = document.createElement('h4');
-            newsTitle.textContent = DINO_TRANSLATE('newsLabel') || 'Nouveauté';
+            newsTitle.textContent = DINO_TRANSLATE('newsLabel') || 'Dernière mise à jour';
             newsTitle.style.fontSize = '22px';
             newsTitle.style.fontWeight = '600';
             newsTitle.style.marginBottom = '12px';
@@ -1536,7 +1636,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             infoPanel.appendChild(newsImg);
 
             const newsText = document.createElement('p');
-            newsText.textContent = DINO_TRANSLATE('newsText') || 'Découvrez les dernières améliorations de DINOcheat : nouvelles options, optimisation du menu et performance accrue.';
+            newsText.textContent = DINO_TRANSLATE('newsText') || 'Cette version améliore l’interface du menu avec un changement de langue instantané sans fermeture du panneau, l’affichage du skin actuel désormais cliquable, une barre d’outils plus épurée, des couleurs mieux harmonisées sur les sites compatibles, ainsi qu’une correction du bug lié aux drapeaux obsolètes.';
             newsText.style.fontSize = '17px';
             newsText.style.lineHeight = '1.5';
             newsText.style.textAlign = 'left';
@@ -1554,17 +1654,18 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         const greasyForkUrl = GREASYFORK_PAGE_URL;
 
-        function fetchInstallCount(infoPanel) {
-            fetch(greasyForkUrl)
-                .then(response => response.text())
+        async function fetchInstallCount(infoPanel) {
+            httpGetCrossOrigin(greasyForkUrl)
                 .then(html => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
                     const installElement = doc.querySelector('dd.script-show-total-installs > span');
                     const installCount = installElement ? installElement.textContent.trim() : "Inconnu";
-                    const versionElement = doc.querySelector('dd.script-show-version > span');
 
                     displayInstallCountAndVersion(installCount, infoPanel);
+                })
+                .catch(() => {
+                    displayInstallCountAndVersion("Inconnu", infoPanel);
                 });
         }
 
@@ -1598,7 +1699,11 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             infoPanel.appendChild(container);
 
             let currentCount = 0;
-            const targetCount = parseInt(installCount.replace(/\s/g, '')) || 0;
+            const targetCount = parseInt(String(installCount).replace(/[^\d]/g, ''), 10) || 0;
+            if (targetCount <= 0) {
+                installCountElement.textContent = `${DINO_TRANSLATE('installLabel')} : ${installCount}`;
+                return;
+            }
             const increment = Math.ceil(targetCount / 80);
 
             const counterInterval = setInterval(() => {
@@ -1615,27 +1720,114 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         function closeInfoPanel() {
             const infoPanel = document.getElementById('infoPanel');
+            if (!infoPanel) return;
 
             infoPanel.style.right = '-350px';
             setTimeout(() => {
-                infoPanel.remove();
+                if (infoPanel.isConnected) infoPanel.remove();
             }, 300);
         }
 
         function closeInfoPanelFast() {
             const infoPanel = document.getElementById('infoPanel');
-            infoPanel.remove();
+            if (infoPanel) infoPanel.remove();
+        }
+
+        function refreshInfoPanelTranslations(infoPanel) {
+            if (!infoPanel) return;
+
+            const title = infoPanel.querySelector('h3');
+            if (title) title.textContent = DINO_TRANSLATE('infoLabel');
+
+            const suggestionsSection = infoPanel.querySelector('#suggestionsSection');
+            if (suggestionsSection) {
+                const contactText = suggestionsSection.querySelector('p:nth-of-type(1)');
+                if (contactText) {
+                    contactText.innerHTML = `
+            ${DINO_TRANSLATE('infoContact')}
+            <a href="https://greasyfork.org/${DINO_TRANSLATE('link')}/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/feedback"
+                target="_blank" style="color: #007BFF; text-decoration: none;">
+                GreasyFork
+            </a> ${DINO_TRANSLATE('OrLabel')}
+            <a href="https://github.com/DREwX-code" target="_blank" style="color: #007BFF; text-decoration: none;">
+                GitHub
+            </a>.
+            `;
+                }
+
+                const privateMessageText = suggestionsSection.querySelector('p:nth-of-type(2)');
+                if (privateMessageText) {
+                    privateMessageText.innerHTML = `
+            ${DINO_TRANSLATE('infoGmail')} :
+            <a href="mailto:dr3wx.andrew@gmail.com" style="color: #007BFF; text-decoration: none;">
+                dr3wx.andrew@gmail.com
+            </a>
+            `;
+                }
+            }
+
+            const newsTitle = Array.from(infoPanel.querySelectorAll('h4')).find(el => el.textContent);
+            if (newsTitle) newsTitle.textContent = DINO_TRANSLATE('newsLabel') || 'Dernière mise à jour';
+
+            const newsText = Array.from(infoPanel.querySelectorAll('p')).find(el => {
+                return el.textContent.includes('DINOcheat') && !el.querySelector('a');
+            });
+            if (newsText) {
+                newsText.textContent = DINO_TRANSLATE('newsText') || 'Cette version améliore l’interface du menu avec un changement de langue instantané sans fermeture du panneau, l’affichage du skin actuel désormais cliquable, une barre d’outils plus épurée, des couleurs mieux harmonisées sur les sites compatibles, ainsi qu’une correction du bug lié aux drapeaux obsolètes.';
+            }
+
+            const infoStats = Array.from(infoPanel.querySelectorAll('p')).filter(el => !el.querySelector('a'));
+            infoStats.forEach(el => {
+                if (el.textContent.includes(':') && el.textContent.includes(getLocalVersion())) {
+                    el.textContent = `${DINO_TRANSLATE('versionLabel')} : ${getLocalVersion()}`;
+                } else if (/\d|Inconnu|Unknown/i.test(el.textContent) && el.textContent.includes(':')) {
+                    const value = el.textContent.split(':').slice(1).join(':').trim();
+                    if (value) el.textContent = `${DINO_TRANSLATE('installLabel')} : ${value}`;
+                }
+            });
+        }
+
+        function refreshShortcutsPanelTranslations(shortcutsPanel) {
+            if (!shortcutsPanel) return;
+
+            const title = shortcutsPanel.querySelector('h3');
+            if (title) title.textContent = DINO_TRANSLATE('shortcutsTitle');
+
+            const shortcuts = [
+                ['jumpDescription', 'jumpText', 'h'],
+                ['speedDescription', 'speedText', 'v'],
+                ['immortalityDescription', 'immortalityText', 'i'],
+                ['flyDescription', 'flyText', 'a'],
+                ['scoreDescription', 'scoreText', 'k'],
+                ['autoJumpDescription', 'autoJumpText', 'b'],
+                ['addScoreDescription', 'addScoreText', 's'],
+                ['breakDescription', 'breakText', 'p'],
+                ['menuDescription', 'menuText', 't']
+            ];
+
+            shortcutsPanel.querySelectorAll('#shortcutsList li').forEach((item, index) => {
+                const shortcut = shortcuts[index];
+                if (!shortcut) return;
+                const [descriptionKey, labelKey, key] = shortcut;
+                item.setAttribute('data-description', DINO_TRANSLATE(descriptionKey));
+                item.innerHTML = `${DINO_TRANSLATE(labelKey)}: <strong>"${key}"</strong>`;
+            });
+
+            const descriptionPanel = shortcutsPanel.querySelector('#descriptionPanel');
+            if (descriptionPanel && descriptionPanel.style.display !== 'none') {
+                descriptionPanel.style.display = 'none';
+            }
         }
 
 
         function openTermsPanel() {
             toggleMenuPopup()
-            if (typeof infoPanel !== 'undefined' && infoPanel !== null) {
+            if (document.getElementById('infoPanel')) {
                 closeInfoPanelFast();
             }
 
-            if (typeof shortcutsPanel !== 'undefined' && shortcutsPanel !== null) {
-                closeInfoPanelFast();
+            if (document.getElementById('shortcutsPanel')) {
+                closeShortcutsPanelFast();
             }
 
 
@@ -1922,22 +2114,26 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         function closeShortcutsPanel() {
             const shortcutsPanel = document.getElementById('shortcutsPanel');
+            if (!shortcutsPanel) return;
 
             shortcutsPanel.style.right = '-350px';
             setTimeout(() => {
-                shortcutsPanel.remove();
+                if (shortcutsPanel.isConnected) shortcutsPanel.remove();
             }, 300);
         }
 
         function closeShortcutsPanelFast() {
             const shortcutsPanel = document.getElementById('shortcutsPanel');
-            shortcutsPanel.remove();
+            if (shortcutsPanel) shortcutsPanel.remove();
 
         }
 
 
         function toggleMenuPopup() {
             if (!menuPopup) {
+                cleanupMenuRuntime();
+                menuAbortController = typeof AbortController !== 'undefined' ? new AbortController() : null;
+                const menuListenerOptions = menuAbortController ? { signal: menuAbortController.signal } : false;
                 menuPopup = document.createElement('div');
                 menuPopup.className = 'modern-menu-popup';
                 menuShadow = menuPopup.attachShadow({ mode: 'open' });
@@ -1948,21 +2144,22 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         <div class="bar"></div>
                         <div class="bar"></div>
                         <div class="bar"></div>
-                    </div>${DINO_TRANSLATE('menu')}
+                    </div><span data-i18n="menu">${DINO_TRANSLATE('menu')}</span>
                 </div>
                 <div class="content">
-                    <span>${DINO_TRANSLATE('jumpHeight')} <input type="number" id="jumpHeightInput" class="input-small-discreet" placeholder="10"></span>
-                    <span>${DINO_TRANSLATE('speedText')} <input type="number" id="speedInput" class="input-small-discreet" placeholder="7"></span>
-                    <span>${DINO_TRANSLATE('scoreText')} <input type="number" id="scoreInput" class="input-small-discreet" placeholder="00000"></span>
-                    <span>${DINO_TRANSLATE('immortalityText')} <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxImmortality" tabindex="-1"></label></span>
-                    <span>${DINO_TRANSLATE('autoJumpText')} <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxBot" tabindex="-1"></label></span>
-                    <span>${DINO_TRANSLATE('invisibleText')} <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxInvisible" tabindex="-1"></label></span>
-                    <span>${DINO_TRANSLATE('scorePlus')} <button id="increaseScoreButton" class="btn-small-discreet"> 1000 </button></span>
-                    <span>${DINO_TRANSLATE('walkIn')} <button id="toggleAirWalkButton"
+                    <span><span data-i18n="jumpHeight">${DINO_TRANSLATE('jumpHeight')}</span> <input type="number" id="jumpHeightInput" class="input-small-discreet" placeholder="10"></span>
+                    <span><span data-i18n="speedText">${DINO_TRANSLATE('speedText')}</span> <input type="number" id="speedInput" class="input-small-discreet" placeholder="7"></span>
+                    <span><span data-i18n="scoreText">${DINO_TRANSLATE('scoreText')}</span> <input type="number" id="scoreInput" class="input-small-discreet" placeholder="00000"></span>
+                    <span><span data-i18n="immortalityText">${DINO_TRANSLATE('immortalityText')}</span> <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxImmortality" tabindex="-1"></label></span>
+                    <span><span data-i18n="autoJumpText">${DINO_TRANSLATE('autoJumpText')}</span> <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxBot" tabindex="-1"></label></span>
+                    <span><span data-i18n="invisibleText">${DINO_TRANSLATE('invisibleText')}</span> <label class="checkbox-wrap-blue"> <input type="checkbox" id="toggleCheckboxInvisible" tabindex="-1"></label></span>
+                    <span><span data-i18n="scorePlus">${DINO_TRANSLATE('scorePlus')}</span> <button id="increaseScoreButton" class="btn-small-discreet"> 1000 </button></span>
+                    <span><span data-i18n="walkIn">${DINO_TRANSLATE('walkIn')}</span> <button id="toggleAirWalkButton"
                             class="btn-small-discreet">${DINO_TRANSLATE('theAir')}</button></span>
                     <div class="theme-container">
                         <div class="dropdown">
-                            <span class="dropdown-title">${DINO_TRANSLATE('dinoTheme')}</span>
+                            <span class="dropdown-title" data-i18n="dinoTheme">${DINO_TRANSLATE('dinoTheme')}</span>
+                            <span class="current-skin-label" id="currentSkinLabel">${DINO_TRANSLATE(currentTheme)}</span>
                         </div>
                         <div class="theme-panel" id="themePanel">
                             <div class="theme-options" id="themeOptions"></div>
@@ -1970,15 +2167,15 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     </div>
                 </div>
                 <div class="terms-of-use">
-                    <span id="TermsText">${DINO_TRANSLATE('TileTermsLabel')}</span>
+                    <span id="TermsText" data-i18n="TileTermsLabel">${DINO_TRANSLATE('TileTermsLabel')}</span>
                 </div>
 
                 <div id="sidePanel" class="side-panel">
                     <div class="side-panel-content">
-                        <h2 class="options-title">${DINO_TRANSLATE('optionsTitle')}</h2>
+                        <h2 class="options-title" data-i18n="optionsTitle">${DINO_TRANSLATE('optionsTitle')}</h2>
 
                         <div class="switch-container">
-                            <span class="switch-label">${DINO_TRANSLATE('shortcutsLabel')}</span>
+                            <span class="switch-label" data-i18n="shortcutsLabel">${DINO_TRANSLATE('shortcutsLabel')}</span>
                             <svg id="eyeIcon" class="switch-icon icon-spacing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path
@@ -1992,7 +2189,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         </div>
 
                         <div class="switch-container">
-                            <span class="switch-label">${DINO_TRANSLATE('breakText')}</span>
+                            <span class="switch-label" data-i18n="breakText">${DINO_TRANSLATE('breakText')}</span>
                             <svg id="breakIcon" class="switch-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="6" y="4" width="4" height="16"></rect>
@@ -2001,7 +2198,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         </div>
 
                         <div class="switch-container">
-                            <span class="switch-label">${DINO_TRANSLATE('infoLabel')}</span>
+                            <span class="switch-label" data-i18n="infoLabel">${DINO_TRANSLATE('infoLabel')}</span>
                             <svg id="infoIcon" class="switch-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
@@ -2011,7 +2208,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         </div>
 
                         <div class="switch-container">
-                            <span class="switch-label">${DINO_TRANSLATE('ToolbarLabel')}</span>
+                            <span class="switch-label" data-i18n="ToolbarLabel">${DINO_TRANSLATE('ToolbarLabel')}</span>
                             <label class="checkbox-wrap-green">
                                 <input type="checkbox" id="toggleToolbar">
                             </label>
@@ -2019,30 +2216,32 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 
                         <div class="switch-container">
-                            <span class="switch-label">${DINO_TRANSLATE('switchLabelLang')}</span>
+                            <span class="switch-label" data-i18n="switchLabelLang">${DINO_TRANSLATE('switchLabelLang')}</span>
                             <div id="flag-selector" class="flag-conteneur">
                                 <img id="selected-flag"
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/440px-Flag_of_the_United_Kingdom_%283-5%29.svg.png"
+                                    src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
                                     alt="Selected Flag" class="flag-selected" data-lang="en" />
                                 <div id="flag-list" class="flag-list">
                                     <img class="flag-option"
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/440px-Flag_of_the_United_Kingdom_%283-5%29.svg.png"
+                                        src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
                                         alt="English" data-lang="en" />
-                                    <img class="flag-option" src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
+                                    <img class="flag-option"
+                                        src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
                                         alt="Français" data-lang="fr" />
-                                    <img class="flag-option" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
+                                    <img class="flag-option"
+                                        src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
                                         alt="Español" data-lang="es" />
                                     <img class="flag-option"
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/langfr-450px-Flag_of_Italy.svg.png"
+                                        src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg"
                                         alt="Italiano" data-lang="it" />
                                     <img class="flag-option"
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/langfr-2880px-Flag_of_Germany.svg.png"
+                                        src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"
                                         alt="Deutsch" data-lang="de" />
                                     <img class="flag-option"
                                         src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg"
                                         alt="简体中文" data-lang="zh-CN" />
                                     <img class="flag-option"
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1599px-Flag_of_Japan.svg.png"
+                                        src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg"
                                         alt="日本" data-lang="ja" />
                                 </div>
                             </div>
@@ -2050,13 +2249,13 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         <br>
 
                         <hr style="border: none; height: 1px; background: rgba(0,0,0,0.15); margin: 10px 0 6px 0;">
-                        <h2 class="options-title">${DINO_TRANSLATE('supportLabel')}</h2>
+                        <h2 class="options-title" data-i18n="supportLabel">${DINO_TRANSLATE('supportLabel')}</h2>
 
 
                         <div class="rating-container">
-                            <span class="rating-label">${DINO_TRANSLATE('ratingLabel')}</span>
+                            <span class="rating-label" data-i18n="ratingLabel">${DINO_TRANSLATE('ratingLabel')}</span>
                             <a href="https://greasyfork.org/${DINO_TRANSLATE('link')}/scripts/486972-dinocheat-hack-cheat-dino-google-chrome-bot-rapide-score-imortel/feedback?locale_override=1"
-                                target="_blank" class="rating-stars">
+                                target="_blank" class="rating-stars" data-i18n-href-locale="feedback">
                                 <span class="star">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                        <path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
@@ -2096,6 +2295,9 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                             .flag-selected {
                                 width: 35px;
                                 height: 25px;
+                                object-fit: cover;
+                                display: block;
+                                box-sizing: border-box;
                                 cursor: pointer;
                                 transition: transform 0.3s ease, box-shadow 0.3s ease;
                                 border-radius: 5px;
@@ -2146,6 +2348,9 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                             .flag-option {
                                 width: 35px;
                                 height: 25px;
+                                object-fit: cover;
+                                display: block;
+                                box-sizing: border-box;
                                 cursor: pointer;
                                 margin: 5px 0;
                                 transition: transform 0.3s ease, background-color 0.3s ease;
@@ -2164,7 +2369,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     </div>
 
                     <div class="credits">
-                        <span>${DINO_TRANSLATE('creditLabel')}</span>
+                        <span data-i18n="creditLabel">${DINO_TRANSLATE('creditLabel')}</span>
                     </div>
                 </div>
                 `;
@@ -2183,6 +2388,28 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 const themePanel = getMenuElementById('themePanel');
                 const themeOptionsContainer = getMenuElementById('themeOptions');
                 let draggingTheme = null;
+
+                const setThemeDraggingState = (active) => {
+                    if (themeOptionsContainer) {
+                        themeOptionsContainer.classList.toggle('drag-active', active);
+                    }
+                    if (menuPopup) {
+                        menuPopup.classList.toggle('theme-dragging', active);
+                    }
+                    document.documentElement.classList.toggle('dino-theme-dragging', active);
+                    document.documentElement.style.cursor = active ? 'grabbing' : '';
+                    document.body.style.cursor = active ? 'grabbing' : '';
+                };
+
+                const handleGlobalThemeDrag = (event) => {
+                    if (!draggingTheme) return;
+                    event.preventDefault();
+                    if (event.dataTransfer) {
+                        event.dataTransfer.dropEffect = 'move';
+                    }
+                    document.documentElement.style.cursor = 'grabbing';
+                    document.body.style.cursor = 'grabbing';
+                };
 
                 const getDragAfterElement = (container, y) => {
                     const draggableElements = Array.from(container.querySelectorAll('.theme-option:not(.dragging)'));
@@ -2217,8 +2444,10 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         option.addEventListener('dragstart', (event) => {
                             draggingTheme = theme;
                             option.classList.add('dragging');
+                            setThemeDraggingState(true);
                             if (event.dataTransfer) {
                                 event.dataTransfer.effectAllowed = 'move';
+                                event.dataTransfer.dropEffect = 'move';
                                 event.dataTransfer.setData('text/plain', theme);
                             }
                         });
@@ -2226,6 +2455,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         option.addEventListener('dragend', () => {
                             draggingTheme = null;
                             option.classList.remove('dragging');
+                            setThemeDraggingState(false);
                         });
 
                         themeOptionsContainer.appendChild(option);
@@ -2237,6 +2467,9 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     if (!themeOptionsContainer) return;
                     if (!draggingTheme) return;
                     event.preventDefault();
+                    if (event.dataTransfer) {
+                        event.dataTransfer.dropEffect = 'move';
+                    }
                     const draggingEl = themeOptionsContainer.querySelector('.theme-option.dragging');
                     if (!draggingEl) return;
                     const afterElement = getDragAfterElement(themeOptionsContainer, event.clientY);
@@ -2254,6 +2487,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     themeOrder = normalizeThemeOrder(orderedThemes);
                     await GM_setValue('themeOrder', themeOrder);
                     draggingTheme = null;
+                    setThemeDraggingState(false);
                     renderThemeOptions();
                 };
 
@@ -2276,8 +2510,32 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     themeOptionsContainer.addEventListener('drop', handleThemeDrop);
                     themeOptionsContainer.dataset.dragBound = 'true';
                 }
+                document.addEventListener('dragenter', handleGlobalThemeDrag, menuListenerOptions);
+                document.addEventListener('dragover', handleGlobalThemeDrag, menuListenerOptions);
+                document.addEventListener('drop', () => setThemeDraggingState(false), menuListenerOptions);
 
                 renderThemeOptions();
+
+                function refreshMenuTranslations() {
+                    if (!menuShadow) return;
+
+                    applyI18n(menuShadow);
+                    menuShadow.querySelectorAll('.theme-option').forEach(option => {
+                        option.textContent = DINO_TRANSLATE(option.dataset.theme);
+                    });
+                    updateThemeSelection(currentTheme);
+                    updateButtonText(DINO_TRANSLATE(isWalkingInTheAir ? 'theGround' : 'theAir'));
+
+                    const infoPanel = document.getElementById('infoPanel');
+                    if (infoPanel) {
+                        refreshInfoPanelTranslations(infoPanel);
+                    }
+
+                    const shortcutsPanel = document.getElementById('shortcutsPanel');
+                    if (shortcutsPanel) {
+                        refreshShortcutsPanelTranslations(shortcutsPanel);
+                    }
+                }
 
 
                 async function changeLanguage(flag) {
@@ -2308,7 +2566,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                             try { localStorage.setItem('DINO_LANG', savedLang); } catch (e) { }
                         }
                     } else {
-                        selectedFlag.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/440px-Flag_of_the_United_Kingdom_%283-5%29.svg.png';
+                        selectedFlag.src = 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg';
                         selectedFlag.setAttribute('data-lang', 'en');
                         currentLang = 'en';
                         try { localStorage.setItem('DINO_LANG', 'en'); } catch (e) { }
@@ -2325,34 +2583,15 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 });
 
                 flagOptions.forEach(function (flag) {
-                    flag.addEventListener('click', function () {
-                        changeLanguage(flag);
-                        closeMenuPopupFast();
-                        setTimeout(() => {
-                            toggleMenuPopup();
-                        }, 20);
-
-                        const shortcutsPanel = document.getElementById('shortcutsPanel');
-                        if (shortcutsPanel) {
-                            closeShortcutsPanelFast();
-                            setTimeout(() => {
-                                openShortcutsPanel();
-                            }, 2);
-                        }
-
-                        const infoPanel = document.getElementById('infoPanel');
-                        if (infoPanel) {
-                            closeInfoPanelFast();
-                            setTimeout(() => {
-                                openInfoPanel();
-                            }, 2);
-                        }
-
+                    flag.addEventListener('click', async function () {
+                        await changeLanguage(flag);
+                        refreshMenuTranslations();
                     });
                 });
 
 
                 function closeMenuPopupFast() {
+                    cleanupMenuRuntime();
                     if (menuPopup) {
                         menuPopup.style.display = 'none';
                         setTimeout(() => {
@@ -2379,12 +2618,12 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         }
                     }
 
-                });
+                }, menuListenerOptions);
 
 
                 document.addEventListener('DOMContentLoaded', function () {
                     loadLanguage();
-                });
+                }, menuListenerOptions);
                 loadLanguage();
 
 
@@ -2451,7 +2690,8 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 if (breakIcon) {
 
                     function updatePauseIcon() {
-                        const isRunning = Runner.instance_ && Runner.instance_.isRunning();
+                        const runner = getRunnerInstance();
+                        const isRunning = runner && runner.isRunning();
 
                         const breakIcon = getMenuElementById('breakIcon');
                         if (breakIcon) {
@@ -2480,10 +2720,12 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 
                     function togglePause() {
-                        if (Runner.instance_.isRunning()) {
-                            Runner.instance_.stop();
+                        const runner = requireRunnerInstance();
+                        if (!runner) return;
+                        if (runner.isRunning()) {
+                            runner.stop();
                         } else {
-                            Runner.instance_.play();
+                            runner.play();
                         }
                         updatePauseIcon();
                     }
@@ -2502,10 +2744,10 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     }
 
                     breakIcon.addEventListener('click', onBreakIconClick);
-                    document.addEventListener('keydown', onKeydown);
+                    document.addEventListener('keydown', onKeydown, menuListenerOptions);
 
 
-                    setInterval(updatePauseIcon, 150);
+                    pauseIconInterval = setInterval(updatePauseIcon, 150);
                     updatePauseIcon();
                 }
 
@@ -2556,105 +2798,6 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 
 
-                const STORAGE_KEY = "theme_order";
-                const themeContainer = document.querySelector(".theme-options");
-
-                if (themeContainer) {
-                    initThemeDragSort(themeContainer);
-                    restoreThemeOrder(themeContainer);
-                }
-
-                function initThemeDragSort(container) {
-                    const items = container.querySelectorAll(".theme-option");
-                    const placeholder = document.createElement("div");
-                    placeholder.className = "theme-placeholder";
-
-                    let autoScrollSpeed = 8;
-                    let autoScrollMargin = 50;
-                    let autoScrollInterval = null;
-
-                    items.forEach(item => {
-                        item.setAttribute("draggable", "true");
-
-                        item.addEventListener("dragstart", e => {
-                            e.dataTransfer.effectAllowed = "move";
-                            e.target.classList.add("dragging");
-                            container.classList.add("drag-active");
-                            container.insertBefore(placeholder, e.target.nextSibling);
-                        });
-
-                        item.addEventListener("dragend", e => {
-                            e.target.classList.remove("dragging");
-                            container.classList.remove("drag-active");
-                            placeholder.remove();
-                            saveThemeOrder(container);
-                            stopAutoScroll();
-                        });
-                    });
-
-                    container.addEventListener("dragover", e => {
-                        e.preventDefault();
-                        const dragging = container.querySelector(".dragging");
-                        if (!dragging) return;
-
-                        const afterElement = getThemeDragAfterElement(container, e.clientY);
-                        if (afterElement == null) container.appendChild(placeholder);
-                        else container.insertBefore(placeholder, afterElement);
-
-                        const rect = container.getBoundingClientRect();
-                        if (e.clientY < rect.top + autoScrollMargin) startAutoScroll(-autoScrollSpeed);
-                        else if (e.clientY > rect.bottom - autoScrollMargin) startAutoScroll(autoScrollSpeed);
-                        else stopAutoScroll();
-                    });
-
-                    container.addEventListener("dragleave", stopAutoScroll);
-                    container.addEventListener("drop", stopAutoScroll);
-
-                    function startAutoScroll(speed) {
-                        if (autoScrollInterval) return;
-                        autoScrollInterval = setInterval(() => (container.scrollTop += speed), 16);
-                    }
-
-                    function stopAutoScroll() {
-                        clearInterval(autoScrollInterval);
-                        autoScrollInterval = null;
-                    }
-                }
-
-                function getThemeDragAfterElement(container, y) {
-                    const elements = [...container.querySelectorAll(".theme-option:not(.dragging)")];
-                    return elements.reduce(
-                        (closest, child) => {
-                            const box = child.getBoundingClientRect();
-                            const offset = y - box.top - box.height / 2;
-                            if (offset < 0 && offset > closest.offset) return { offset, element: child };
-                            else return closest;
-                        },
-                        { offset: Number.NEGATIVE_INFINITY }
-                    ).element;
-                }
-
-                function saveThemeOrder(container) {
-                    const order = [...container.querySelectorAll(".theme-option")].map(el => el.dataset.id || el.textContent.trim());
-                    GM_setValue(STORAGE_KEY, order);
-                }
-
-                function restoreThemeOrder(container) {
-                    const savedOrder = GM_getValue(STORAGE_KEY);
-                    if (!savedOrder || !Array.isArray(savedOrder)) return;
-
-                    const itemsMap = {};
-                    container.querySelectorAll(".theme-option").forEach(el => {
-                        const id = el.dataset.id || el.textContent.trim();
-                        itemsMap[id] = el;
-                    });
-                    savedOrder.forEach(id => {
-                        const item = itemsMap[id];
-                        if (item) container.appendChild(item);
-                    });
-                }
-
-
                 const toggleBotCheckbox = getMenuElementById('toggleCheckboxBot');
                 if (toggleBotCheckbox) {
                     toggleBotCheckbox.addEventListener('change', function () {
@@ -2687,11 +2830,17 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 }
 
                 const dropdownTitle = queryMenu('.dropdown-title');
-                if (dropdownTitle && themePanel) {
-                    dropdownTitle.addEventListener('click', function () {
+                const currentSkinLabel = getMenuElementById('currentSkinLabel');
+                const toggleThemePanel = function () {
+                    if (!themePanel) return;
                         const shouldOpen = !themePanel.classList.contains('open');
                         setThemePanelOpen(shouldOpen);
-                    });
+                };
+                if (dropdownTitle && themePanel) {
+                    dropdownTitle.addEventListener('click', toggleThemePanel);
+                }
+                if (currentSkinLabel && themePanel) {
+                    currentSkinLabel.addEventListener('click', toggleThemePanel);
                 }
 
                 let isDragging = false;
@@ -2700,9 +2849,11 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 const header = queryMenu('.header');
 
                 function updateJumpHeight(value) {
+                    const runner = requireRunnerInstance();
+                    if (!runner) return;
                     const jumpHeight = parseFloat(value);
                     if (!isNaN(jumpHeight)) {
-                        Runner.instance_.tRex.setJumpVelocity(jumpHeight);
+                        runner.tRex.setJumpVelocity(jumpHeight);
                     } else {
                         alert(DINO_TRANSLATE('invalidJumpHeight'));
                     }
@@ -2724,9 +2875,11 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 
                 function updateSpeed(value) {
+                    const runner = requireRunnerInstance();
+                    if (!runner) return;
                     const speed = parseFloat(value);
                     if (!isNaN(speed)) {
-                        Runner.instance_.setSpeed(speed);
+                        runner.setSpeed(speed);
                     } else {
                         alert(DINO_TRANSLATE('invalidSpeed'));
                     }
@@ -2748,9 +2901,11 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
 
                 function updateScore(value) {
+                    const runner = requireRunnerInstance();
+                    if (!runner) return;
                     const newScore = parseInt(value, 10);
                     if (!isNaN(newScore) && Number.isInteger(newScore) && newScore <= 999990) {
-                        Runner.instance_.distanceRan = newScore / Runner.instance_.distanceMeter.config.COEFFICIENT;
+                        runner.distanceRan = newScore / runner.distanceMeter.config.COEFFICIENT;
                     } else {
                         alert(DINO_TRANSLATE('invalidIntegerScore'));
                     }
@@ -2773,11 +2928,9 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
                 function increaseScore() {
                     const scoreIncrement = 1000;
-                    if (Runner.instance_) {
-                        Runner.instance_.distanceRan += scoreIncrement / Runner.instance_.distanceMeter.config.COEFFICIENT;
-                    } else {
-                        alert(DINO_TRANSLATE('runnerInstanceNotAvailable'));
-                    }
+                    const runner = requireRunnerInstance();
+                    if (!runner) return;
+                    runner.distanceRan += scoreIncrement / runner.distanceMeter.config.COEFFICIENT;
                 }
 
                 const increaseScoreButton = getMenuElementById('increaseScoreButton');
@@ -2785,18 +2938,17 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     increaseScoreButton.addEventListener('click', increaseScore);
                 }
 
-
-                let isWalkingInTheAir = false;
-
                 const toggleAirWalkButton = getMenuElementById('toggleAirWalkButton');
                 if (toggleAirWalkButton) {
                     toggleAirWalkButton.addEventListener('click', function () {
+                        const runner = requireRunnerInstance();
+                        if (!runner || !runner.tRex) return;
                         if (isWalkingInTheAir) {
-                            Runner.instance_.tRex.groundYPos = 93;
+                            runner.tRex.groundYPos = 93;
                             updateButtonText(DINO_TRANSLATE('theAir'));
                             touche('ArrowUp');
                         } else {
-                            Runner.instance_.tRex.groundYPos = 0;
+                            runner.tRex.groundYPos = 0;
                             updateButtonText(DINO_TRANSLATE('theGround'));
                             touche('ArrowUp');
                         }
@@ -2846,7 +2998,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                         menuPopup.style.left = event.clientX - offsetX + 'px';
                         menuPopup.style.top = event.clientY - offsetY + 'px';
                     }
-                });
+                }, menuListenerOptions);
 
                 document.addEventListener('mouseup', function () {
                     if (isDragging) {
@@ -2855,9 +3007,10 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                             header.style.cursor = 'move';
                         }
                     }
-                });
+                }, menuListenerOptions);
 
             } else {
+                cleanupMenuRuntime();
                 menuPopup.classList.remove('open');
                 setTimeout(() => {
                     if (menuPopup && document.body.contains(menuPopup)) {
@@ -2872,10 +3025,12 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         document.addEventListener('keydown', function (event) {
             if (event.key === 'h' && isShortcutEnabled) {
+                const runner = requireRunnerInstance();
+                if (!runner) return;
                 const userInput = prompt(DINO_TRANSLATE('enterNewJumpHeight'));
                 const jumpHeight = parseFloat(userInput);
                 if (!isNaN(jumpHeight)) {
-                    Runner.instance_.tRex.setJumpVelocity(jumpHeight);
+                    runner.tRex.setJumpVelocity(jumpHeight);
                     const jumpInput = getMenuElementById('jumpHeightInput');
                     if (jumpInput) {
                         jumpInput.value = jumpHeight;
@@ -3073,11 +3228,14 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     '.mt-5.mb-3.d-flex.align-items-center.justify-content-between',
                     '.d-flex.flex-wrap.justify-content-center.align-items-start.mt-5.mb-5.mini-games *',
                     '.d-flex.flex-wrap.justify-content-center.align-items-center.mini-games *',
-                    '.help__space'
+                    '.help__space',
+                    '.mini-games a'
                 ],
                 'dinorunner.com': ['#score', '.score-container', '.game-info', '.title'],
                 'tuckercraig.com': [
-                    'span', 'p', 'h1', '.copyright'
+                    '.offline', '.interstitial-wrapper','.copyright',
+                    'footer.other-versions > div:has(a[href*="trivrdy.com"]) > p:first-child',
+                    'ul li span:not(.version-link)'
                 ],
                 'googledino.com': [
                     '.d-flex.align-items-center.topbar',
@@ -3094,6 +3252,27 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                     el.style.color = color;
                 });
             });
+
+            if (host === 'tuckercraig.com') {
+                document.querySelectorAll('.dino-ad-label').forEach(el => {
+                    el.style.setProperty('color', '#dedede', 'important');
+                });
+            }
+
+            if (host === 'dino-chrome.com' || host === 'googledino.com') {
+                let dividerStyle = document.getElementById('dinocheat-main-menu-divider-style');
+                if (!dividerStyle) {
+                    dividerStyle = document.createElement('style');
+                    dividerStyle.id = 'dinocheat-main-menu-divider-style';
+                    document.head.appendChild(dividerStyle);
+                }
+
+                dividerStyle.textContent = `
+                    .main-menu .divider::after {
+                        background-color: ${color} !important;
+                    }
+                `;
+            }
         }
 
 
@@ -3261,6 +3440,13 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         const styleZoom = document.createElement('style');
         styleZoom.textContent = `
+            html.dino-theme-dragging,
+            html.dino-theme-dragging *,
+            html.dino-theme-dragging body,
+            html.dino-theme-dragging body * {
+                cursor: grabbing !important;
+            }
+
             .dz-frame{
                 width:100%;
                 display:flex; flex-direction:column;
@@ -3272,32 +3458,65 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
             .dz-controls{
                 position:relative;
-                display:flex; justify-content:center; align-items:center; gap:12px;
-                margin:10px 0; padding:6px 8px; width:max-content; user-select:none;
-                background:rgba(255,255,255,0.9); border:1px solid rgba(0,0,0,0.08);
-                border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.12);
-                font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+                display:flex; justify-content:center; align-items:center; gap:8px;
+                margin:10px 0; padding:8px 42px 8px 10px; width:max-content; user-select:none;
+                background:rgba(255,255,255,0.88);
+                border:1px solid rgba(51,51,51,0.18);
+                border-radius:10px;
+                box-shadow:0 8px 18px rgba(0,0,0,0.14);
+                backdrop-filter: blur(8px);
+                font-family:Arial, sans-serif;
                 z-index:999;
-                padding-right: 52px;
+                color:#333;
             }
             .dz-divider{
-                width:1px; height:28px; background:rgba(15,17,21,0.18);
+                width:1px; height:22px; background:rgba(51,51,51,0.14);
                 border-radius:999px;
             }
             .dz-btn{
-                width:36px; height:36px; border:0; border-radius:999px; cursor:pointer;
-                font-size:18px; font-weight:800; line-height:1; background:#0f1115; color:#fff;
-                display:grid; place-items:center; transition:transform .08s ease, opacity .15s ease, box-shadow .15s ease;
-                box-shadow:0 2px 8px rgba(0,0,0,.25);
+                width:31px; height:31px;
+                border:1px solid rgba(51,51,51,0.16);
+                border-radius:6px;
+                cursor:pointer;
+                font-size:16px;
+                font-weight:600;
+                line-height:1;
+                background:rgba(245,245,245,0.9);
+                color:#444;
+                display:grid;
+                place-items:center;
+                transition:
+                    background-color 0.2s ease,
+                    border-color 0.2s ease,
+                    color 0.2s ease,
+                    transform 0.12s ease,
+                    box-shadow 0.2s ease,
+                    opacity 0.15s ease;
+                box-shadow:none;
+            }
+            .dz-btn:hover{
+                background:rgba(238,242,255,0.95);
+                border-color:rgba(27,78,209,0.35);
+                color:#1b4ed1;
+                box-shadow:0 2px 6px rgba(27,78,209,0.12);
+                transform:translateY(-1px);
+            }
+            .dz-btn:active{
+                transform:translateY(0);
+                box-shadow:none;
+            }
+            .dz-btn:focus{
+                outline:none;
+                box-shadow:0 0 0 2px rgba(27,78,209,0.2);
             }
             .dz-btn-close{
                 position:absolute;
-                top:4px; right:6px;
+                top:6px; right:8px;
                 transform: none;
-                width:20px; height:20px;
+                width:18px; height:18px;
                 border-radius:0;
                 background: transparent !important;
-                color:#e04845;
+                color:#8a8f98;
                 border:none;
                 outline:none;
                 appearance:none;
@@ -3307,16 +3526,25 @@ The French Terms of Use linked above is the definitive policy; in case of any di
                 cursor:pointer;
                 transition: color 0.15s ease, opacity 0.15s ease;
             }
-            .dz-btn-close:hover{ color:#ff4c4c; }
+            .dz-btn-close:hover{ color:#d64a45; }
             .dz-btn-close:active{ opacity:0.9; }
             .dz-btn-close:focus{ outline:none; }
-            .dz-btn-close svg{ width:18px; height:18px; }
+            .dz-btn-close svg{ width:16px; height:16px; }
+            .dz-btn.dz-btn-close,
+            .dz-btn.dz-btn-close:hover,
+            .dz-btn.dz-btn-close:active,
+            .dz-btn.dz-btn-close:focus{
+                background:transparent !important;
+                border:0 !important;
+                box-shadow:none !important;
+                transform:none !important;
+            }
             .dz-btn-pause {
-            background: #1e3a8a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
-            width: 36px;
-            height: 36px;
+            background:#1b4ed1;
+            border:1px solid rgba(27,78,209,0.85);
+            border-radius:6px;
+            width:31px;
+            height:31px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -3330,13 +3558,15 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             }
 
             .dz-btn-pause:hover {
-            background: #2541a0;
-            box-shadow: 0 2px 6px rgba(30, 58, 138, 0.4);
+            background:#1646bd;
+            border-color:#1646bd;
+            color:#fff;
+            box-shadow:0 2px 8px rgba(27,78,209,0.22);
             transform: translateY(-1px);
             }
 
             .dz-btn-pause:active {
-            background: #1b3282;
+            background:#143a9e;
             box-shadow: none;
             transform: translateY(0);
             opacity: 0.95;
@@ -3366,11 +3596,20 @@ The French Terms of Use linked above is the definitive policy; in case of any di
             `;
         document.head.appendChild(styleZoom);
 
-        const waitFor = (sel, root = document) => new Promise(res => {
+        const waitFor = (sel, root = document, timeoutMs = 15000) => new Promise(res => {
             const hit = root.querySelector(sel); if (hit) return res(hit);
             const mo = new MutationObserver(() => {
-                const el = root.querySelector(sel); if (el) { mo.disconnect(); res(el); }
+                const el = root.querySelector(sel);
+                if (el) {
+                    clearTimeout(timeoutId);
+                    mo.disconnect();
+                    res(el);
+                }
             });
+            const timeoutId = setTimeout(() => {
+                mo.disconnect();
+                res(null);
+            }, timeoutMs);
             mo.observe(root, { childList: true, subtree: true });
         });
         const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
@@ -3643,6 +3882,7 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         (async function boot() {
             canvas = await waitFor('.runner-canvas');
+            if (!canvas) return;
             runner = canvas.closest('.runner-container') || canvas.parentElement;
             ensureScaffold(); centerRunner(); captureBase(); bindCanvas();
             applyTheme(currentTheme);
@@ -3657,10 +3897,12 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         document.addEventListener('keydown', function (event) {
             if (event.key === 'v' && isShortcutEnabled) {
+                const runner = requireRunnerInstance();
+                if (!runner) return;
                 const userInput = prompt(DINO_TRANSLATE('chooseSpeed'));
                 const speed = parseFloat(userInput);
                 if (!isNaN(speed)) {
-                    Runner.instance_.setSpeed(speed);
+                    runner.setSpeed(speed);
                     const speedInputEl = getMenuElementById('speedInput');
                     if (speedInputEl) {
                         speedInputEl.value = speed;
@@ -3672,18 +3914,17 @@ The French Terms of Use linked above is the definitive policy; in case of any di
         });
 
 
-        let isWalkingInTheAir = false;
-
-
         document.addEventListener('keydown', function (event) {
             if (event.key === 'a' && isShortcutEnabled) {
+                const runner = requireRunnerInstance();
+                if (!runner || !runner.tRex) return;
 
                 if (isWalkingInTheAir) {
-                    Runner.instance_.tRex.groundYPos = 93;
+                    runner.tRex.groundYPos = 93;
                     updateButtonText(DINO_TRANSLATE('theAir'));
                     touche('ArrowUp');
                 } else {
-                    Runner.instance_.tRex.groundYPos = 0;
+                    runner.tRex.groundYPos = 0;
                     updateButtonText(DINO_TRANSLATE('theGround'));
                     touche('ArrowUp');
                 }
@@ -3694,10 +3935,12 @@ The French Terms of Use linked above is the definitive policy; in case of any di
 
         document.addEventListener('keydown', function (event) {
             if (event.key === 'k' && isShortcutEnabled) {
+                const runner = requireRunnerInstance();
+                if (!runner) return;
                 const userInput = prompt(DINO_TRANSLATE('enterNewScore'));
                 const newScore = parseInt(userInput, 10);
-                if (!isNaN(newScore) && Number.isInteger(newScore) && newScore < 999990) {
-                    Runner.instance_.distanceRan = newScore / Runner.instance_.distanceMeter.config.COEFFICIENT;
+                if (!isNaN(newScore) && Number.isInteger(newScore) && newScore <= 999990) {
+                    runner.distanceRan = newScore / runner.distanceMeter.config.COEFFICIENT;
                     const scoreInputEl = getMenuElementById('scoreInput');
                     if (scoreInputEl) {
                         scoreInputEl.value = newScore;
